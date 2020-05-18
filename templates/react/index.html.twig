@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ReactController!{% endblock %}
+
+{% block body %}
+    <div id="root"></div>
+{% endblock %}
+
+{#    <script type="text/javascript" src="{{ asset('build/runtime.js') }}"></script>#}
+    {% block javascripts %}{{ encore_entry_script_tags('js/app') }}{% endblock %}
