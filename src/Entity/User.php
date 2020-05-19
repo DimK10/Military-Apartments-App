@@ -59,6 +59,12 @@ class User implements UserInterface
      */
     private $tenantId;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Unit::class, inversedBy="users")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $unitId;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -196,4 +202,17 @@ class User implements UserInterface
 
         return $this;
     }
+
+    public function getUnitId(): ?Unit
+    {
+        return $this->unitId;
+    }
+
+    public function setUnitId(?Unit $unitId): self
+    {
+        $this->unitId = $unitId;
+
+        return $this;
+    }
+
 }
