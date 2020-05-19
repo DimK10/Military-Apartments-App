@@ -57,13 +57,13 @@ class User implements UserInterface
     /**
      * @ORM\OneToOne(targetEntity=Tenant::class, inversedBy="user", cascade={"persist", "remove"})
      */
-    private $tenantId;
+    private $tenant;
 
     /**
      * @ORM\ManyToOne(targetEntity=Unit::class, inversedBy="users")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $unitId;
+    private $unit;
 
     public function getId(): ?int
     {
@@ -191,26 +191,26 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getTenantId(): ?Tenant
+    public function getTenant(): ?Tenant
     {
-        return $this->tenantId;
+        return $this->tenant;
     }
 
-    public function setTenantId(?Tenant $tenantId): self
+    public function setTenant(?Tenant $tenant): self
     {
-        $this->tenantId = $tenantId;
+        $this->tenant = $tenant;
 
         return $this;
     }
 
-    public function getUnitId(): ?Unit
+    public function getUnit(): ?Unit
     {
-        return $this->unitId;
+        return $this->unit;
     }
 
-    public function setUnitId(?Unit $unitId): self
+    public function setUnit(?Unit $unit): self
     {
-        $this->unitId = $unitId;
+        $this->unit = $unit;
 
         return $this;
     }

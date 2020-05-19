@@ -63,7 +63,7 @@ class Unit
     {
         if (!$this->users->contains($user)) {
             $this->users[] = $user;
-            $user->setUnitId($this);
+            $user->setUnit($this);
         }
 
         return $this;
@@ -74,8 +74,8 @@ class Unit
         if ($this->users->contains($user)) {
             $this->users->removeElement($user);
             // set the owning side to null (unless already changed)
-            if ($user->getUnitId() === $this) {
-                $user->setUnitId(null);
+            if ($user->getUnit() === $this) {
+                $user->setUnit(null);
             }
         }
 

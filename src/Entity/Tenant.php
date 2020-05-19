@@ -25,7 +25,7 @@ class Tenant
     private $score;
 
     /**
-     * @ORM\OneToOne(targetEntity=User::class, mappedBy="tenantId", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity=User::class, mappedBy="tenant", cascade={"persist", "remove"})
      */
     private $user;
 
@@ -43,6 +43,11 @@ class Tenant
      * @ORM\OneToMany(targetEntity=Telephone::class, mappedBy="tenant", orphanRemoval=true)
      */
     private $telephones;
+
+    /**
+     * @ORM\OneToOne(targetEntity=Apartment::class, mappedBy="tenant", cascade={"persist", "remove"})
+     */
+    private $apartment;
 
     public function __construct()
     {
@@ -78,9 +83,9 @@ class Tenant
         $this->user = $user;
 
         // set (or unset) the owning side of the relation if necessary
-        $newTenantId = null === $user ? null : $this;
-        if ($user->getTenantId() !== $newTenantId) {
-            $user->setTenantId($newTenantId);
+        $newTenant = null === $user ? null : $this;
+        if ($user->getTenant() !== $newTenant) {
+            $user->setTenant($newTenant);
         }
 
         return $this;
@@ -174,6 +179,23 @@ class Tenant
             if ($telephone->getTenant() === $this) {
                 $telephone->setTenant(null);
             }
+        }
+
+        return $this;
+    }
+
+    public function getApartment(): ?Apartment
+    {
+        return $this->apartment;
+    }
+
+    public function setApartment(Apartment $apartment): self
+    {
+        $this->apartment = $apartment;
+
+        // set the owning side of the relation if necessary
+        if ($apartment->getTenant() !== $this) {
+            $apartment->setTenant($this);
         }
 
         return $this;
