@@ -26,6 +26,7 @@ class Tenant
 
     /**
      * @ORM\OneToOne(targetEntity=User::class, mappedBy="tenant", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=true)
      */
     private $user;
 
@@ -35,13 +36,17 @@ class Tenant
     private $member;
 
     /**
-     * @ORM\OneToMany(targetEntity=Vehicle::class, mappedBy="tenant", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=Vehicle::class, mappedBy="tenant")
+     * @ORM\JoinColumn(nullable=true)
      */
+//    orphanRemoval=true
     private $vehicles;
 
     /**
-     * @ORM\OneToMany(targetEntity=Telephone::class, mappedBy="tenant", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=Telephone::class, mappedBy="tenant")
+     * @ORM\JoinColumn(nullable=true)
      */
+    //    orphanRemoval=true
     private $telephones;
 
     /**

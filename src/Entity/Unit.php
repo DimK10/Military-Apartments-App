@@ -25,7 +25,8 @@ class Unit
     private $name;
 
     /**
-     * @ORM\OneToMany(targetEntity=User::class, mappedBy="unitId")
+     * @ORM\OneToMany(targetEntity=User::class, mappedBy="unit")
+     * @ORM\JoinColumn(nullable=true)
      */
     private $users;
 

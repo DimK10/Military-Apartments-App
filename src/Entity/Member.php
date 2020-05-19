@@ -29,7 +29,7 @@ class Member
 
     /**
      * @ORM\ManyToOne(targetEntity=Tenant::class, inversedBy="member")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $tenant;
 

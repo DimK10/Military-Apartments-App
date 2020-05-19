@@ -56,13 +56,21 @@ class User implements UserInterface
 
     /**
      * @ORM\OneToOne(targetEntity=Tenant::class, inversedBy="user", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=true)
      */
+//    /**
+//     * @ORM\Column(type="string", length=10)
+//     */
     private $tenant;
 
     /**
      * @ORM\ManyToOne(targetEntity=Unit::class, inversedBy="users")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
+//    TODO - Change nullable to true
+//    /**
+//     * @ORM\Column(type="string", length=10)
+//     */
     private $unit;
 
     public function getId(): ?int

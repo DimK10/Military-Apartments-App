@@ -29,7 +29,7 @@ class Telephone
 
     /**
      * @ORM\ManyToOne(targetEntity=Tenant::class, inversedBy="telephones")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $tenant;
 
