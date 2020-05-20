@@ -51,6 +51,7 @@ class Tenant
 
     /**
      * @ORM\OneToOne(targetEntity=Apartment::class, mappedBy="tenant", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=true)
      */
     private $apartment;
 

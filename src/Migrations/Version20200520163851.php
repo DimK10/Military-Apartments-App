@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20200519200246 extends AbstractMigration
+final class Version20200520163851 extends AbstractMigration
 {
     public function getDescription() : string
     {
@@ -22,9 +22,9 @@ final class Version20200519200246 extends AbstractMigration
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE member CHANGE tenant_id tenant_id INT DEFAULT NULL');
-        $this->addSql('ALTER TABLE user CHANGE tenant_id tenant_id INT DEFAULT NULL, CHANGE unit_id unit_id INT DEFAULT NULL, CHANGE roles roles JSON NOT NULL');
-        $this->addSql('ALTER TABLE apartment CHANGE notes notes VARCHAR(255) DEFAULT NULL');
+        $this->addSql('ALTER TABLE tenant ADD apartment_id INT DEFAULT NULL');
+        $this->addSql('ALTER TABLE tenant ADD CONSTRAINT FK_4E59C462176DFE85 FOREIGN KEY (apartment_id) REFERENCES apartment (id)');
+        $this->addSql('CREATE UNIQUE INDEX UNIQ_4E59C462176DFE85 ON tenant (apartment_id)');
     }
 
     public function down(Schema $schema) : void
@@ -32,8 +32,8 @@ final class Version20200519200246 extends AbstractMigration
         // this down() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE apartment CHANGE notes notes VARCHAR(255) CHARACTER SET utf8mb4 DEFAULT \'NULL\' COLLATE `utf8mb4_unicode_ci`');
-        $this->addSql('ALTER TABLE member CHANGE tenant_id tenant_id INT NOT NULL');
-        $this->addSql('ALTER TABLE user CHANGE tenant_id tenant_id INT DEFAULT NULL, CHANGE unit_id unit_id INT NOT NULL, CHANGE roles roles LONGTEXT CHARACTER SET utf8mb4 NOT NULL COLLATE `utf8mb4_bin`');
+        $this->addSql('ALTER TABLE tenant DROP FOREIGN KEY FK_4E59C462176DFE85');
+        $this->addSql('DROP INDEX UNIQ_4E59C462176DFE85 ON tenant');
+        $this->addSql('ALTER TABLE tenant DROP apartment_id');
     }
 }
