@@ -20,20 +20,9 @@ class Tenant
     private $id;
 
     /**
-     * @ORM\Column(type="integer")
-     */
-    private $score;
-
-    /**
-     * @ORM\OneToOne(targetEntity=User::class, mappedBy="tenant", cascade={"persist", "remove"})
-     * @ORM\JoinColumn(nullable=true)
-     */
-    private $user;
-
-    /**
      * @ORM\OneToMany(targetEntity=Member::class, mappedBy="tenant", orphanRemoval=true)
      */
-    private $member;
+    private $members;
 
     /**
      * @ORM\OneToMany(targetEntity=Vehicle::class, mappedBy="tenant")
@@ -55,9 +44,14 @@ class Tenant
      */
     private $apartment;
 
+    /**
+     * @ORM\OneToOne(targetEntity=PersonInArmy::class, mappedBy="tenant", cascade={"persist", "remove"})
+     */
+    private $personInArmy;
+
     public function __construct()
     {
-        $this->member = new ArrayCollection();
+        $this->members = new ArrayCollection();
         $this->vehicles = new ArrayCollection();
         $this->telephones = new ArrayCollection();
     }
@@ -67,58 +61,28 @@ class Tenant
         return $this->id;
     }
 
-    public function getScore(): ?int
-    {
-        return $this->score;
-    }
-
-    public function setScore(int $score): self
-    {
-        $this->score = $score;
-
-        return $this;
-    }
-
-    public function getUser(): ?User
-    {
-        return $this->user;
-    }
-
-    public function setUser(?User $user): self
-    {
-        $this->user = $user;
-
-        // set (or unset) the owning side of the relation if necessary
-        $newTenant = null === $user ? null : $this;
-        if ($user->getTenant() !== $newTenant) {
-            $user->setTenant($newTenant);
-        }
-
-        return $this;
-    }
-
     /**
      * @return Collection|Member[]
      */
-    public function getMember(): Collection
+    public function getMembers(): Collection
     {
-        return $this->member;
+        return $this->members;
     }
 
-    public function addMember(Member $member): self
+    public function addMembers(Member $member): self
     {
-        if (!$this->member->contains($member)) {
-            $this->member[] = $member;
+        if (!$this->members->contains($member)) {
+            $this->members[] = $member;
             $member->setTenant($this);
         }
 
         return $this;
     }
 
-    public function removeMember(Member $member): self
+    public function removeMembers(Member $member): self
     {
-        if ($this->member->contains($member)) {
-            $this->member->removeElement($member);
+        if ($this->members->contains($member)) {
+            $this->members->removeElement($member);
             // set the owning side to null (unless already changed)
             if ($member->getTenant() === $this) {
                 $member->setTenant(null);
@@ -202,6 +166,24 @@ class Tenant
         // set the owning side of the relation if necessary
         if ($apartment->getTenant() !== $this) {
             $apartment->setTenant($this);
+        }
+
+        return $this;
+    }
+
+    public function getPersonInArmy(): ?PersonInArmy
+    {
+        return $this->personInArmy;
+    }
+
+    public function setPersonInArmy(?PersonInArmy $personInArmy): self
+    {
+        $this->personInArmy = $personInArmy;
+
+        // set (or unset) the owning side of the relation if necessary
+        $newTenant = null === $personInArmy ? null : $this;
+        if ($personInArmy->getTenant() !== $newTenant) {
+            $personInArmy->setTenant($newTenant);
         }
 
         return $this;

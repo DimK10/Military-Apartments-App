@@ -34,44 +34,12 @@ class User implements UserInterface
      */
     private $password;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $firstName;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $lastName;
-
-    /**
-     * @ORM\Column(type="string", length=20)
-     */
-    private $rank;
-
-    /**
-     * @ORM\Column(type="string", length=10)
-     */
-    private $specialty;
-
-    /**
-     * @ORM\OneToOne(targetEntity=Tenant::class, inversedBy="user", cascade={"persist", "remove"})
-     * @ORM\JoinColumn(nullable=true)
-     */
-//    /**
-//     * @ORM\Column(type="string", length=10)
-//     */
-    private $tenant;
-
-    /**
-     * @ORM\ManyToOne(targetEntity=Unit::class, inversedBy="users")
-     * @ORM\JoinColumn(nullable=true)
-     */
-//    TODO - Change nullable to true
-//    /**
-//     * @ORM\Column(type="string", length=10)
-//     */
-    private $unit;
+/**
+ * @ORM\ManyToOne(targetEntity=PersonInArmy::class, inversedBy="user")
+ * @ORM\JoinColumn(nullable=false)
+ */
+private $personInArmy;
 
     public function getId(): ?int
     {
@@ -151,74 +119,14 @@ class User implements UserInterface
         // $this->plainPassword = null;
     }
 
-    public function getFirstName(): ?string
+    public function getPersonInArmy(): ?PersonInArmy
     {
-        return $this->firstName;
+        return $this->personInArmy;
     }
 
-    public function setFirstName(string $firstName): self
+    public function setPersonInArmy(?PersonInArmy $personInArmy): self
     {
-        $this->firstName = $firstName;
-
-        return $this;
-    }
-
-    public function getLastName(): ?string
-    {
-        return $this->lastName;
-    }
-
-    public function setLastName(string $lastName): self
-    {
-        $this->lastName = $lastName;
-
-        return $this;
-    }
-
-    public function getRank(): ?string
-    {
-        return $this->rank;
-    }
-
-    public function setRank(string $rank): self
-    {
-        $this->rank = $rank;
-
-        return $this;
-    }
-
-    public function getSpecialty(): ?string
-    {
-        return $this->specialty;
-    }
-
-    public function setSpecialty(string $specialty): self
-    {
-        $this->specialty = $specialty;
-
-        return $this;
-    }
-
-    public function getTenant(): ?Tenant
-    {
-        return $this->tenant;
-    }
-
-    public function setTenant(?Tenant $tenant): self
-    {
-        $this->tenant = $tenant;
-
-        return $this;
-    }
-
-    public function getUnit(): ?Unit
-    {
-        return $this->unit;
-    }
-
-    public function setUnit(?Unit $unit): self
-    {
-        $this->unit = $unit;
+        $this->personInArmy = $personInArmy;
 
         return $this;
     }

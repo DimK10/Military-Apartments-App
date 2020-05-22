@@ -25,14 +25,13 @@ class Unit
     private $name;
 
     /**
-     * @ORM\OneToMany(targetEntity=User::class, mappedBy="unit")
-     * @ORM\JoinColumn(nullable=true)
+     * @ORM\OneToMany(targetEntity=PersonInArmy::class, mappedBy="unit")
      */
-    private $users;
+    private $peopleInArmy;
 
     public function __construct()
     {
-        $this->users = new ArrayCollection();
+        $this->peopleInArmy = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -53,30 +52,30 @@ class Unit
     }
 
     /**
-     * @return Collection|User[]
+     * @return Collection|PersonInArmy[]
      */
-    public function getUsers(): Collection
+    public function getPeopleInArmy(): Collection
     {
-        return $this->users;
+        return $this->peopleInArmy;
     }
 
-    public function addUser(User $user): self
+    public function addPeopleInArmy(PersonInArmy $peopleInArmy): self
     {
-        if (!$this->users->contains($user)) {
-            $this->users[] = $user;
-            $user->setUnit($this);
+        if (!$this->peopleInArmy->contains($peopleInArmy)) {
+            $this->peopleInArmy[] = $peopleInArmy;
+            $peopleInArmy->setUnit($this);
         }
 
         return $this;
     }
 
-    public function removeUser(User $user): self
+    public function removePeopleInArmy(PersonInArmy $peopleInArmy): self
     {
-        if ($this->users->contains($user)) {
-            $this->users->removeElement($user);
+        if ($this->peopleInArmy->contains($peopleInArmy)) {
+            $this->peopleInArmy->removeElement($peopleInArmy);
             // set the owning side to null (unless already changed)
-            if ($user->getUnit() === $this) {
-                $user->setUnit(null);
+            if ($peopleInArmy->getUnit() === $this) {
+                $peopleInArmy->setUnit(null);
             }
         }
 
