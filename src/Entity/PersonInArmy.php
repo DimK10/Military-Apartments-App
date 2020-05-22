@@ -6,6 +6,7 @@ use App\Repository\PersonInArmyRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=PersonInArmyRepository::class)
@@ -20,43 +21,53 @@ class PersonInArmy
     private $id;
 
     /**
+     * @Groups({"personInArmy:read", "personInArmy:write", "user:read"})
      * @ORM\Column(type="string", length=20)
      */
     private $firstname;
 
     /**
+     * @Groups({"personInArmy:read", "personInArmy:write", "user:read"})
      * @ORM\Column(type="string", length=20)
      */
     private $surname;
 
     /**
+     * @Groups({"personInArmy:read", "personInArmy:write", "user:read"})
      * @ORM\Column(type="string", length=10)
      */
     private $rank;
 
     /**
+     * @Groups({"personInArmy:read", "personInArmy:write", "user:read"})
      * @ORM\Column(type="string", length=10)
      */
     private $specialty;
 
     /**
+     * @Groups({"personInArmy:read", "personInArmy:write", "user:read"})
      * @ORM\OneToOne(targetEntity=Tenant::class, inversedBy="personInArmy", cascade={"persist", "remove"})
      */
     private $tenant;
 
     /**
+     * @Groups({"personInArmy:read", "personInArmy:write", "user:read"})
      * @ORM\ManyToOne(targetEntity=Unit::class, inversedBy="peopleInArmy")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $unit;
 
     /**
+     * @Groups({"personInArmy:read", "personInArmy:write", "user:read"})
      * @ORM\OneToOne(targetEntity=Scoring::class, inversedBy="personInArmy", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=true)
      */
     private $scoring;
 
     /**
+     * @Groups({"personInArmy:read", "personInArmy:write"})
      * @ORM\OneToMany(targetEntity=User::class, mappedBy="personInArmy")
+     * @ORM\JoinColumn(nullable=true)
      */
     private $user;
 

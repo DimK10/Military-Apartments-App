@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
@@ -19,16 +20,19 @@ class User implements UserInterface
     private $id;
 
     /**
+     * @Groups({"user:read", "user:write"})
      * @ORM\Column(type="string", length=180, unique=true)
      */
     private $email;
 
     /**
+     * @Groups({"user:read", "user:write"})
      * @ORM\Column(type="json")
      */
     private $roles = [];
 
     /**
+     * @Groups({"user:read", "user:write"})
      * @var string The hashed password
      * @ORM\Column(type="string")
      */
@@ -36,6 +40,7 @@ class User implements UserInterface
 
 
 /**
+ * @Groups({"user:read"})
  * @ORM\ManyToOne(targetEntity=PersonInArmy::class, inversedBy="user")
  * @ORM\JoinColumn(nullable=false)
  */
