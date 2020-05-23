@@ -62,6 +62,11 @@ class Scoring
      */
     private $personInArmy;
 
+    /**
+     * @ORM\Column(type="smallint", nullable=true)
+     */
+    private $exceptionCode;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -177,6 +182,18 @@ class Scoring
         if ($personInArmy->getScoring() !== $newScoring) {
             $personInArmy->setScoring($newScoring);
         }
+
+        return $this;
+    }
+
+    public function getExceptionCode(): ?int
+    {
+        return $this->exceptionCode;
+    }
+
+    public function setExceptionCode(?int $exceptionCode): self
+    {
+        $this->exceptionCode = $exceptionCode;
 
         return $this;
     }
