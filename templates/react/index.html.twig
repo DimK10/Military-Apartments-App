@@ -7,4 +7,7 @@
 {% endblock %}
 
 {#    <script type="text/javascript" src="{{ asset('build/runtime.js') }}"></script>#}
-    {% block javascripts %}{{ encore_entry_script_tags('js/app') }}{% endblock %}
+    {% block javascripts %}
+        {{ parent() }}
+        {{ encore_entry_script_tags('js/app') }}
+    {% endblock %}

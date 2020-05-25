@@ -4,10 +4,12 @@
         "@symfony/webpack-encore": "^0.30.0",
         "babel-preset-react": "^6.24.1",
         "core-js": "^3.0.0",
+        "node-sass": "^4.14.1",
         "prop-types": "^15.7.2",
         "react": "^16.13.1",
         "react-dom": "^16.13.1",
         "regenerator-runtime": "^0.13.2",
+        "sass-loader": "8.0.0",
         "webpack-notifier": "^1.6.0"
     },
     "license": "UNLICENSED",
@@ -17,5 +19,10 @@
         "dev": "encore dev",
         "watch": "encore dev --watch",
         "build": "encore production --progress"
+    },
+    "dependencies": {
+        "@coreui/coreui": "^3.2.0",
+        "@popperjs/core": "^2.4.0",
+        "perfect-scrollbar": "^1.5.0"
     }
 }
