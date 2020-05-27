@@ -74,9 +74,10 @@ class PersonInArmyFixture extends BaseFixture implements DependentFixtureInterfa
             $personInArmy->setRank((string)$randomRanks[rand(0, 13)]);
             $personInArmy->setSpecialty((string)$randomSpecialty[rand(0, 7)]);
 
-            $personInArmy->setUnit($this->getRandomReference('units'));
+            $personInArmy->setUnit(null);
             $personInArmy->setTenant($this->getRandomReference('tenants'));
-            $personInArmy->setScoring($this->getRandomReference('scorings'));
+            $personInArmy->setScoring(null);
+            $personInArmy->setUser(null);
         });
 
         $manager->flush();
@@ -85,9 +86,7 @@ class PersonInArmyFixture extends BaseFixture implements DependentFixtureInterfa
     public function getDependencies()
     {
         return [
-            Tenant::class,
-            Unit::class,
-            Scoring::class
+            TenantFixture::class
         ];
     }
 

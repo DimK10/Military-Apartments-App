@@ -15,12 +15,11 @@ class TenantFixture extends BaseFixture implements DependentFixtureInterface
             $tenant = new Tenant();
 
 
-            $tenant->setScore($this->faker->randomNumber(3));
-            $tenant->setUser($this->getRandomReference('users'));
-            $tenant->addMember($this->getRandomReference('members'));
+
+            $tenant->addMembers($this->getRandomReference('members'));
             $tenant->addVehicle($this->getRandomReference('vehicles'));
             $tenant->addTelephone($this->getRandomReference('telephones'));
-            $tenant->setApartment(null);
+            $tenant->setApartment($this->getRandomReference('apartments'));
 
             return $tenant;
         });
@@ -31,10 +30,10 @@ class TenantFixture extends BaseFixture implements DependentFixtureInterface
     public function getDependencies()
     {
         return [
-            UserFixture::class,
             MemberFixtures::class,
             VehicleFixture::class,
-            TelephoneFixture::class
+            TelephoneFixture::class,
+            ApartmentFixture::class
         ];
     }
 }

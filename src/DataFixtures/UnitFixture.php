@@ -3,7 +3,6 @@
 namespace App\DataFixtures;
 
 use App\Entity\Unit;
-use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 
@@ -15,8 +14,7 @@ class UnitFixture extends BaseFixture implements DependentFixtureInterface
            $unit = new Unit();
 
            $unit->setName($this->faker->company);
-           $unit->addUser($this->getRandomReference('users'));
-
+           $unit->addPeopleInArmy($this->getRandomReference('peopleInArmy'));
            return $unit;
        });
 
@@ -25,6 +23,6 @@ class UnitFixture extends BaseFixture implements DependentFixtureInterface
 
     public function getDependencies()
     {
-        return [UserFixture::class];
+        return [PersonInArmyFixture::class];
     }
 }

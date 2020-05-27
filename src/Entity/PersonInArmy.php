@@ -169,6 +169,16 @@ class PersonInArmy
     }
 
     /**
+     * @param ArrayCollection $user
+     */
+    public function setUser(ArrayCollection $user): void
+    {
+        $this->user = $user;
+    }
+
+
+
+    /**
      * @return Collection|User[]
      */
     public function getUser(): Collection
