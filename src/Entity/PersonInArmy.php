@@ -47,7 +47,9 @@ class PersonInArmy
     /**
      * @Groups({"personInArmy:read", "personInArmy:write", "user:read"})
      * @ORM\OneToOne(targetEntity=Tenant::class, inversedBy="personInArmy", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=true)
      */
+//    todo - remove nullables
     private $tenant;
 
     /**
@@ -55,6 +57,7 @@ class PersonInArmy
      * @ORM\ManyToOne(targetEntity=Unit::class, inversedBy="peopleInArmy")
      * @ORM\JoinColumn(nullable=true)
      */
+//    todo - remove nullable
     private $unit;
 
     /**
