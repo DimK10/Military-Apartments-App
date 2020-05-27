@@ -20,6 +20,7 @@ class TenantFixture extends BaseFixture implements DependentFixtureInterface
             $tenant->addVehicle($this->getRandomReference('vehicles'));
             $tenant->addTelephone($this->getRandomReference('telephones'));
             $tenant->setApartment($this->getRandomReference('apartments'));
+            $tenant->setPersonInArmy(null);
 
             return $tenant;
         });

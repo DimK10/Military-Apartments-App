@@ -27,9 +27,4 @@ class TelephoneFixture extends BaseFixture
         });
         $manager->flush();
     }
-
-//    public function getDependencies()
-//    {
-////        return [TenantFixture::class];
-//    }
 }

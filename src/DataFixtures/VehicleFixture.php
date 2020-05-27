@@ -24,10 +24,4 @@ class VehicleFixture extends BaseFixture
 
         $manager->flush();
     }
-
-
-    public function getDependencies()
-    {
-//        return [TenantFixture::class];
-    }
 }

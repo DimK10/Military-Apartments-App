@@ -23,14 +23,4 @@ class MemberFixtures extends BaseFixture
 
         $manager->flush();
     }
-
-    // If we need  a fixture to run BEFORE another fixture, so that its data can be used
-    // we need to add them here, ON TOP of the other fixture, so it runs first
-//    public function getDependencies()
-//    {
-//        return [
-//            // TODO - Uncomment TenantFixture in MemberFixture
-//            //TenantFixture::class
-//        ];
-//    }
 }
