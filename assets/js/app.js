@@ -1,35 +1,27 @@
-import React from 'react';
+import React, { Fragment, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import '@coreui/coreui'
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import '@coreui/coreui';
+import Login from './src/components/auth/Login';
 
-// class App extends React.Component {
-//     constructor() {
-//         super();
-//
-//         this.state = {
-//             entries: []
-//         };
-//     }
-//
-//     render() {
-//         return ( <div>Hello from React!</div>);
-//     }
-// }
+import { Provider } from 'react-redux';
+import store from './store';
+// import { loadUser } from './actions/auth';
 
-const App = () => (<div>
-    <div className="alert alert-primary" role="alert">
-        A simple primary alert—check it out!
-    </div><button type="button" className="btn btn-success">Success</button>
-    <div className="dropdown">
-        <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-                data-toggle="dropdown" aria-expanded="false">
-            Dropdown button
-        </button>
-        <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a className="dropdown-item" href="#">Item</a>
-            <a className="dropdown-item" href="#">Another Item</a>
-            <a className="dropdown-item" href="#">One more item</a>
-        </div>
-    </div></div>);
+
+const App = () => {
+
+  return (
+      <Provider store={store}>
+        <Router>
+          <Fragment>
+            <Switch>
+              <Route exact path='/' component={Login}/>
+            </Switch>
+          </Fragment>
+        </Router>
+      </Provider>
+  )
+};
 
 ReactDOM.render(<App />, document.getElementById('root'));
