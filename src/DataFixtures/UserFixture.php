@@ -2,7 +2,6 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\PersonInArmy;
 use App\Entity\User;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
@@ -40,9 +39,7 @@ class UserFixture extends BaseFixture implements DependentFixtureInterface
     public function getDependencies()
     {
         return [
-            PersonInArmy::class
+            PersonInArmyFixture::class
         ];
     }
-
-
 }

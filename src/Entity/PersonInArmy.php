@@ -173,10 +173,13 @@ class PersonInArmy
      */
     public function setUser(ArrayCollection $user): void
     {
-        $this->user = $user;
+        if ($user->isEmpty()) {
+            $this->user = null;
+        } else {
+            $this->user = $user;
+
+        }
     }
-
-
 
     /**
      * @return Collection|User[]

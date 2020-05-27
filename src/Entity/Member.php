@@ -62,10 +62,15 @@ class Member
         return $this;
     }
 
-    public function getTenant(): ?Tenant
+    /**
+     * @return mixed
+     */
+    public function getTenant()
     {
         return $this->tenant;
     }
+
+
 
     public function setTenant(?Tenant $tenant): self
     {

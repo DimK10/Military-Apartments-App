@@ -235,7 +235,7 @@ class Apartment
 
     /**
      * @ORM\OneToOne(targetEntity=Tenant::class, inversedBy="apartment", cascade={"persist", "remove"})
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $tenant;
 
@@ -765,10 +765,11 @@ class Apartment
         return $this->tenant;
     }
 
-    public function setTenant(Tenant $tenant): self
+    /**
+     * @param mixed $tenant
+     */
+    public function setTenant($tenant): void
     {
         $this->tenant = $tenant;
-
-        return $this;
     }
 }

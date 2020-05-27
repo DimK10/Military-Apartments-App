@@ -3,11 +3,10 @@
 namespace App\DataFixtures;
 
 use App\Entity\Apartment;
-use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 
-class ApartmentFixture extends BaseFixture implements DependentFixtureInterface
+class ApartmentFixture extends BaseFixture
 {
     public function loadData(ObjectManager $manager)
     {
@@ -88,7 +87,7 @@ class ApartmentFixture extends BaseFixture implements DependentFixtureInterface
             $apartment->setFlags(1);
             $apartment->setNotes(null);
             $apartment->setMilitaryResidence(null);
-            $apartment->setTenant($this->getRandomReference('tenants'));
+            $apartment->setTenant(null);
 
             return $apartment;
 
@@ -96,12 +95,5 @@ class ApartmentFixture extends BaseFixture implements DependentFixtureInterface
         });
 
         $manager->flush();
-    }
-
-    public function getDependencies()
-    {
-        return [
-            TenantFixture::class
-        ];
     }
 }

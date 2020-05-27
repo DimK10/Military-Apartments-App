@@ -3,7 +3,6 @@
 namespace App\DataFixtures;
 
 use App\Entity\Telephone;
-use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
 class TelephoneFixture extends BaseFixture

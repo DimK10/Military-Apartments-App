@@ -3,29 +3,25 @@
 namespace App\DataFixtures;
 
 use App\Entity\PersonInArmy;
-use App\Entity\Scoring;
-use App\Entity\Tenant;
-use App\Entity\Unit;
-use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
-use PhpParser\Node\Expr\Array_;
 
-class PersonInArmyFixture extends BaseFixture implements DependentFixtureInterface
+class PersonInArmyFixture extends BaseFixture
 {
     public function loadData(ObjectManager $manager)
     {
 
 
         $this->createMany(22, 'peopleInArmy', function ($i) {
-            $randomFirstName= array([
-                0 => 'Δημήτριος',
-                1 => 'Γεώργιος',
-                2 => 'Κωνσταντίνος',
-                3 => 'Πέτρος',
-                4 => 'Χρήστος',
-                5 => 'Γιάννης'
-            ]);
+            $randomFirstName= array(
+                'Δημήτριος',
+                'Γεώργιος',
+                'Κωνσταντίνος',
+                'Πέτρος',
+                'Χρήστος',
+                'Γιάννης'
+            );
 
             $randomSurname = [
                 0 => 'Παλαιολόγου',
@@ -69,26 +65,19 @@ class PersonInArmyFixture extends BaseFixture implements DependentFixtureInterfa
             ];
 
             $personInArmy = new PersonInArmy();
-            $personInArmy->setFirstname((string)$randomFirstName[rand(0, 5)]);
+            $personInArmy->setFirstname($randomFirstName[rand(0, 5)]);
             $personInArmy->setSurname((string)$randomSurname[rand(0, 9)]);
             $personInArmy->setRank((string)$randomRanks[rand(0, 13)]);
             $personInArmy->setSpecialty((string)$randomSpecialty[rand(0, 7)]);
 
             $personInArmy->setUnit(null);
-            $personInArmy->setTenant($this->getRandomReference('tenants'));
+            $personInArmy->setTenant(null);
             $personInArmy->setScoring(null);
-            $personInArmy->setUser(null);
+            $personInArmy->setUser(new ArrayCollection());
+
+            return $personInArmy;
         });
 
         $manager->flush();
     }
-
-    public function getDependencies()
-    {
-        return [
-            TenantFixture::class
-        ];
-    }
-
-
 }

@@ -3,7 +3,6 @@
 namespace App\DataFixtures;
 
 use App\Entity\Tenant;
-use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 
@@ -34,7 +33,8 @@ class TenantFixture extends BaseFixture implements DependentFixtureInterface
             MemberFixtures::class,
             VehicleFixture::class,
             TelephoneFixture::class,
-            ApartmentFixture::class
+            ApartmentFixture::class,
+            PersonInArmyFixture::class
         ];
     }
 }
