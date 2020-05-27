@@ -823,6 +823,11 @@
   resolved "https://registry.yarnpkg.com/@coreui/coreui/-/coreui-3.2.0.tgz#44f5d62492f1e0add10fff46780b30d528dc8ee5"
   integrity sha512-/phj0z2DhbJ955bVCjoRbGG0qt0KdjUAG6erdLF14FPV410QbaW3J4PIe9kAZUz86CJ/lXUMzKSYYR3gr7dOAQ==
 
+"@coreui/icons@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@coreui/icons/-/icons-1.0.1.tgz#8af0fe6450904ee1dbb0abf36bf107f35cfecf5e"
+  integrity sha512-DAlvdHRC+HHecdy52vskbNzNKEpu6wHDvSlsHGrwOqNxQl1YLhGEtqAW4sKpyVE3GgysNCywUWZGFlLp8I3LgA==
+
 "@popperjs/core@^2.4.0":
   version "2.4.0"
   resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.4.0.tgz#0e1bdf8d021e7ea58affade33d9d607e11365915"
