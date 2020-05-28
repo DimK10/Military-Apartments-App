@@ -32,7 +32,7 @@ class User implements UserInterface
     private $roles = [];
 
     /**
-     * @Groups({"user:read", "user:write"})
+     * @Groups({"user:write"})
      * @var string The hashed password
      * @ORM\Column(type="string")
      */

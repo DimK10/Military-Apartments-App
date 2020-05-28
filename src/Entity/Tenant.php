@@ -6,6 +6,7 @@ use App\Repository\TenantRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=TenantRepository::class)
@@ -45,6 +46,7 @@ class Tenant
     private $apartment;
 
     /**
+     * @Groups({ "tenant:read", "tenant:write" })
      * @ORM\OneToOne(targetEntity=PersonInArmy::class, mappedBy="tenant", cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=true)
      */
