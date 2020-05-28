@@ -26,16 +26,7 @@ security:
                 check_path:  app_login
                 username_path: email
                 password_path: password
-#                success_handler:
-#                    lexik_jwt_authentication.handler.authentication_success
-#                failure_handler:
-#                    lexik_jwt_authentication.handler.authentication_failure
-#        api:
-#            pattern:   ^/api
-#            stateless: true
-#            guard:
-#                authenticators:
-#                    - lexik_jwt_authentication.jwt_token_authenticator
+
             logout:
                 path: app_logout
 

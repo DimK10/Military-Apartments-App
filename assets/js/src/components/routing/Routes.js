@@ -1,8 +1,13 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { Route, Switch } from 'react-router-dom';
+import Dashboard from '../dashboard/Dashboard';
 
 const Routes = () => {
-  return <div></div>;
+  return (
+    <Switch>
+      <Route exact path='/' component={Dashboard} />
+    </Switch>
+  );
 };
 
 Routes.propTypes = {};

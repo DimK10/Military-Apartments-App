@@ -1,18 +1,26 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}
-            <link rel="stylesheet" href="{{ asset('build/css/coreui.css') }}">
-            <link rel="stylesheet" href="https://unpkg.com/@coreui/icons/css/all.min.css">
-        {% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}
-            {#  coreui assets #}
-            <script src="{{ asset('build/js/coreui.js') }}"></script>
-        {% endblock %}
-    </body>
+	<head>
+		<meta charset="UTF-8">
+		<title>
+			{% block title %}Welcome!
+			{% endblock %}
+		</title>
+		{% block stylesheets %}
+			<link rel="stylesheet" href="{{ asset('build/css/coreui.css') }}">
+			<link rel="stylesheet" href="https://unpkg.com/@coreui/icons/css/all.min.css">
+
+
+		{% endblock %}
+	</head>
+	<body>
+		{% block body %}{% endblock %}
+		{% block javascripts %}
+			{#  coreui assets #}
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/umd/popper.min.js" integrity="sha384-L2pyEeut/H3mtgCBaUNw7KWzp5n9&#43;4pDQiExs933/5QfaTh8YStYFFkOzSoXjlTb" crossorigin="anonymous"></script>
+
+			{# TODO - remove coreui from node modules #}
+			<script src="{{ asset('build/js/coreui.js') }}"></script>
+		{% endblock %}
+	</body>
 </html>
