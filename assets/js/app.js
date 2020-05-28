@@ -16,10 +16,11 @@ const App = () => {
     <Provider store={store}>
       <Router>
         <Fragment>
+          <Route exact path='/login' component={Login} />
+
           <NavbarAndSidebar />
           <Sidebar />
           <Switch>
-            <Route exact path='/login' component={Login} />
             <Route component={Routes} />
           </Switch>
         </Fragment>
