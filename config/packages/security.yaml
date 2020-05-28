@@ -19,6 +19,7 @@ security:
             anonymous: true
             form_login:
                 login_path: /login
+                default_target_path: /
 
 
             json_login:

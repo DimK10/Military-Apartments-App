@@ -22,10 +22,11 @@ export default (state = initialState, action) => {
   const { type, payload } = action;
 
   switch (type) {
+    case LOGIN_SUCCESS:
     case USER_LOADED:
       return {
         ...state,
-        ...payload,
+        user: { ...payload },
         isAuthenticated: true,
         loading: false,
       };
