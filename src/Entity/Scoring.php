@@ -59,6 +59,7 @@ class Scoring
 
     /**
      * @ORM\OneToOne(targetEntity=PersonInArmy::class, mappedBy="scoring", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=true)
      */
     private $personInArmy;
 
@@ -173,17 +174,12 @@ class Scoring
         return $this->personInArmy;
     }
 
-    public function setPersonInArmy(?PersonInArmy $personInArmy): self
+    /**
+     * @param mixed $personInArmy
+     */
+    public function setPersonInArmy($personInArmy): void
     {
         $this->personInArmy = $personInArmy;
-
-        // set (or unset) the owning side of the relation if necessary
-        $newScoring = null === $personInArmy ? null : $this;
-        if ($personInArmy->getScoring() !== $newScoring) {
-            $personInArmy->setScoring($newScoring);
-        }
-
-        return $this;
     }
 
     public function getExceptionCode(): ?int

@@ -7,7 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 
-class PersonInArmyFixture extends BaseFixture
+class PersonInArmyFixture extends BaseFixture implements DependentFixtureInterface
 {
     public function loadData(ObjectManager $manager)
     {
@@ -80,4 +80,14 @@ class PersonInArmyFixture extends BaseFixture
 
         $manager->flush();
     }
+
+    public function getDependencies()
+    {
+        return [
+            ScoringFixture::class,
+            TenantFixture::class
+        ];
+    }
+
+
 }

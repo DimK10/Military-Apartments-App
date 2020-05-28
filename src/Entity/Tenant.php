@@ -46,6 +46,7 @@ class Tenant
 
     /**
      * @ORM\OneToOne(targetEntity=PersonInArmy::class, mappedBy="tenant", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=true)
      */
     private $personInArmy;
 
@@ -176,16 +177,25 @@ class Tenant
         return $this->personInArmy;
     }
 
-    public function setPersonInArmy(?PersonInArmy $personInArmy): self
+    /**
+     * @param mixed $personInArmy
+     */
+    public function setPersonInArmy($personInArmy): void
     {
         $this->personInArmy = $personInArmy;
-
-        // set (or unset) the owning side of the relation if necessary
-        $newTenant = null === $personInArmy ? null : $this;
-        if ($personInArmy->getTenant() !== $newTenant) {
-            $personInArmy->setTenant($newTenant);
-        }
-
-        return $this;
     }
+
+//
+//    public function setPersonInArmy(?PersonInArmy $personInArmy): self
+//    {
+//        $this->personInArmy = $personInArmy;
+//
+//        // set (or unset) the owning side of the relation if necessary
+//        $newTenant = null === $personInArmy ? null : $this;
+//        if ($personInArmy->getTenant() !== $newTenant) {
+//            $personInArmy->setTenant($newTenant);
+//        }
+//
+//        return $this;
+//    }
 }

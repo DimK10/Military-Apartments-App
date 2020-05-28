@@ -9,7 +9,7 @@ use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ObjectManager;
 
-class ScoringFixture extends Fixture implements DependentFixtureInterface
+class ScoringFixture extends Fixture
 {
 
     /**
@@ -26,10 +26,10 @@ class ScoringFixture extends Fixture implements DependentFixtureInterface
     {
         for ($i=0; $i < 22; $i++) {
 
-            $personInArmy = $this->em->getRepository(PersonInArmy::class)->find($i);
+//            $personInArmy = $this->em->getRepository(PersonInArmy::class)->find($i);
 
             $scoring = new Scoring();
-            $scoring->setPersonInArmy($personInArmy);
+            $scoring->setPersonInArmy(null);
 
             $scoring->setIsMarried(false);
             $scoring->setHasNumOfChildren(0);
@@ -47,10 +47,10 @@ class ScoringFixture extends Fixture implements DependentFixtureInterface
         $manager->flush();
     }
 
-    public function getDependencies()
-    {
-        return [
-            PersonInArmyFixture::class
-        ];
-    }
+//    public function getDependencies()
+//    {
+//        return [
+//            PersonInArmyFixture::class
+//        ];
+//    }
 }
