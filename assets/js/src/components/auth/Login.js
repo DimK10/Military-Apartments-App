@@ -1,10 +1,19 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { login } from '../../actions/auth';
 import { Redirect } from 'react-router-dom';
+import {choosePath} from "../../helpers/routingHelpers";
+import {withRouter} from "react-router";
 
-const Login = ({ login, auth: { isAuthenticated } }) => {
+const Login = ({ login, auth: { isAuthenticated, loading, user }, history }) => {
+
+  // useEffect(() =>{
+  //   if (isAuthenticated && !loading) {
+  //     history.push('/')
+  //   }
+  // },[isAuthenticated, loading]);
+
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -18,12 +27,13 @@ const Login = ({ login, auth: { isAuthenticated } }) => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    login(email, password);
+    await login(email, password);
   };
 
-  // Redirect if logged in
+  // Redirect if logged in -- i need to make this logic better
   if (isAuthenticated) {
-    return <Redirect to='/' />;
+    // choosePath(isAuthenticated, loading, user);
+    return <Redirect to='/' />
   }
 
   return (
@@ -97,4 +107,4 @@ const mapStateToProps = (state) => ({
   auth: state.authReducer,
 });
 
-export default connect(mapStateToProps, { login })(Login);
+export default withRouter(connect(mapStateToProps, { login })(Login));

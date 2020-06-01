@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from 'react';
 import PropTypes from 'prop-types';
 
-const Navbar = (props) => {
+const NavbarAndSidebar = (props) => {
   const [showSidebar, setShowSidebar] = useState('');
 
   return (
@@ -534,6 +534,6 @@ const Navbar = (props) => {
   );
 };
 
-Navbar.propTypes = {};
+NavbarAndSidebar.propTypes = {};
 
-export default Navbar;
+export default NavbarAndSidebar;

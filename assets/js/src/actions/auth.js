@@ -14,6 +14,7 @@ import {
 } from './types';
 
 import { setAlert } from './alert';
+import {Redirect} from "react-router";
 
 // Add session cookie in each request on axios
 let config = {
@@ -105,14 +106,15 @@ export const registerUser = (formData) => async (dispatch) => {
 };
 
 // Log out
-export const logout = () => (dispatch) => {
+export const logout = () => async (dispatch) => {
   try {
-    axios.get('api/logout', config);
+    await axios.get('api/logout', config);
+    // cookies.remove('PHPSESSID');
     dispatch({
       type: LOGOUT,
     });
     dispatch(setAlert('You have been logged out successfully!', 'success'));
-  } catch (error) {
+  } catch (err) {
     dispatch({
       type: LOGOUT_ERROR,
       payload: {

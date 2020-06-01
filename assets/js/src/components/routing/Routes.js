@@ -1,15 +1,43 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
-import Dashboard from '../dashboard/Dashboard';
+import {Redirect, Route, Switch} from 'react-router-dom';
+import ApartmentsAdminDashboard from '../apartmentsAdmin/dashboard/ApartmentsAdminDashboard';
+import ApartmentsAdminRoute from "./ApartmentsAdminRoute";
+import { connect } from 'react-redux';
+import Login from "../auth/Login";
+// import {choosePath} from "../../helpers/routingHelpers";
 
-const Routes = () => {
+
+const Routes = ({ auth: { isAuthenticated, loading, user } }) => {
+
+
+    const choosePath = () => {
+        if (isAuthenticated && user) {
+            // User is authenticated -- check where he/she is authorized to go
+            if (user.roles.includes('ROLE_APARTMENTS_ADMIN')) {
+                return <Redirect to={"/apartments-admin/dashboard"} />
+            } else if (user.roles.includes('ROLE_BUILDING_ADMIN')) {
+                return <Redirect to={"/building-admin/dashboard"} />
+            } else if (user.roles.includes('ROLE_ADMIN')) {
+                return <Redirect to={"/admin/apartmentsAdmin"} />
+            }
+        } else {
+            return <Redirect to="/login" />
+        }
+    };
+
   return (
     <Switch>
-      <Route exact path='/' component={Dashboard} />
+        <Route exact path='/' render={choosePath} />
+        <Route exact path='/login' component={Login} />
+        <ApartmentsAdminRoute exact path='/apartments-admin/dashboard' component={ApartmentsAdminDashboard} />
     </Switch>
   );
 };
 
 Routes.propTypes = {};
 
-export default Routes;
+const mapStateToProps = state => ({
+    auth: state.authReducer
+});
+
+export default connect(mapStateToProps)(Routes);

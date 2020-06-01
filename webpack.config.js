@@ -20,7 +20,7 @@ Encore
      * Add 1 entry for each "page" of your app
      * (including one that's included on every page - e.g. "app")
      *
-     * Each entry will result in one JavaScript file (e.g. app.js)
+     * Each entry will result in one JavaScript file (e.g. App.js)
      * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
      */
     .addEntry('js/coreui', './assets/js/coreui/coreui.js')
@@ -69,7 +69,7 @@ Encore
 
     // uncomment if you use API Platform Admin (composer req api-admin)
     .enableReactPreset()
-    .addEntry('js/app', './assets/js/app.js')
+    .addEntry('js/app', './assets/js/index.js')
     //.addEntry('admin', './assets/js/admin.js')
 ;
 
