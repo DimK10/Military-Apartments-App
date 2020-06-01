@@ -4,6 +4,7 @@ import ApartmentsAdminDashboard from '../apartmentsAdmin/dashboard/ApartmentsAdm
 import ApartmentsAdminRoute from "./ApartmentsAdminRoute";
 import { connect } from 'react-redux';
 import Login from "../auth/Login";
+import Logout from "../auth/Logout";
 // import {choosePath} from "../../helpers/routingHelpers";
 
 
@@ -29,6 +30,7 @@ const Routes = ({ auth: { isAuthenticated, loading, user } }) => {
     <Switch>
         <Route exact path='/' render={choosePath} />
         <Route exact path='/login' component={Login} />
+        <Route exact path='/logout' component={Logout} />
         <ApartmentsAdminRoute exact path='/apartments-admin/dashboard' component={ApartmentsAdminDashboard} />
     </Switch>
   );

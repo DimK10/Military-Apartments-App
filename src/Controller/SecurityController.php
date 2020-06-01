@@ -28,7 +28,7 @@ class SecurityController extends AbstractController
 //        return $this->json($this->getUser(), 200);
     }
 
-    /** @Route("/api/logout", name="app_logout") */
+    /** @Route("/logout", name="app_logout") */
     public function logout()
     {
         throw new \Exception('This Controller should not be reached');

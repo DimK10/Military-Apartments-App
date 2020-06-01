@@ -1,20 +1,20 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import {Link} from 'react-router-dom'
+import {NavLink} from 'react-router-dom'
 import {logout} from "../../../actions/auth";
 import {connect} from 'react-redux';
 import NavbarAndSidebar from "../../layout/NavbarAndSidebar";
 
-const ApartmentsAdminDashboard = ({ logout }) => {
+const ApartmentsAdminDashboard = () => {
 
   return <Fragment>
     <NavbarAndSidebar />
     Apartments Admin Dashboard page
-    <button className='btn btn-primary' onClick={logout}>Log Out</button>
+    <NavLink className='btn btn-primary' to='/logout'>Log Out</NavLink>
   </Fragment>;
 };
 
 ApartmentsAdminDashboard.propTypes = {};
 
 
-export default connect(null, { logout })(ApartmentsAdminDashboard);
+export default ApartmentsAdminDashboard;
