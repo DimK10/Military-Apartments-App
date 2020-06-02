@@ -13,9 +13,9 @@ class SecurityController extends AbstractController
     /* session based authentication */
 
     /**
-     * @Route("/api/login", name="app_login")
+     * @Route("/api/auth", name="app_auth")
      */
-    public function login(SerializerInterface $serializer)
+    public function authenticate(SerializerInterface $serializer)
     {
         if (!$this->isGranted('IS_AUTHENTICATED_FULLY')) {
 
