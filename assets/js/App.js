@@ -1,26 +1,35 @@
 import React, { Fragment, useEffect } from "react";
-import ReactDOM from "react-dom";
-import { IndexR } from "react-router";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "@coreui/coreui";
-import Login from "./src/components/auth/Login";
-
-import { connect, Provider } from "react-redux";
+import { Provider } from "react-redux";
 import store from "./store";
 import Routes from "./src/components/routing/Routes";
+import { loadUser } from "./src/actions/auth";
+import setAuthToken from "./src/utils/setAuthToken";
+import Navbar from "./src/components/layout/Navbar";
 import Sidebar from "./src/components/layout/Sidebar";
-import NavbarAndSidebar from "./src/components/layout/NavbarAndSidebar";
-import { login } from "./src/actions/auth";
-import { choosePath } from "./src/helpers/routingHelpers";
 
-const App = ({ login }) => {
+if (localStorage.getItem("jwt")) {
+  const token = JSON.parse(localStorage.getItem("jwt")).token;
+
+  setAuthToken(token);
+}
+
+const App = () => {
+  useEffect(() => {
+    store.dispatch(loadUser());
+  }, []);
   return (
     <Provider store={store}>
       <Router>
         <Fragment>
-          <Switch>
-            <Route component={Routes} />
-          </Switch>
+          <Sidebar />
+          <div className="c-wrapper">
+            <Navbar />
+            <Switch>
+              <Route component={Routes} />
+            </Switch>
+          </div>
         </Fragment>
       </Router>
     </Provider>

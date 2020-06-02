@@ -7,6 +7,7 @@ import Login from "../auth/Login";
 import Logout from "../auth/Logout";
 import SelectDashboard from "../auth/SelectDashboard";
 import AuthenticatedRoute from "./AuthenticatedRoute";
+import ApartmentsAdminRoute from "./ApartmentsAdminRoute";
 // import {choosePath} from "../../helpers/routingHelpers";
 
 const Routes = ({ auth: { isAuthenticated, loading, user } }) => {
@@ -44,7 +45,7 @@ const Routes = ({ auth: { isAuthenticated, loading, user } }) => {
         path="/select-dashboard"
         component={SelectDashboard}
       />
-      <AuthenticatedRoute
+      <ApartmentsAdminRoute
         exact
         path="/apartments-admin/dashboard"
         component={ApartmentsAdminDashboard}

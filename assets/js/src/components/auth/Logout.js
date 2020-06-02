@@ -1,15 +1,15 @@
-import React, { useEffect } from 'react';
-import PropTypes from 'prop-types';
-import { logout } from '../../actions/auth';
-import { connect } from 'react-redux';
-import { Redirect } from 'react-router';
+import React, { useEffect } from "react";
+import PropTypes from "prop-types";
+import { logout } from "../../actions/auth";
+import { connect } from "react-redux";
+import { Redirect } from "react-router";
 
 const Logout = ({ logout }) => {
   useEffect(() => {
     logout();
   }, []);
 
-  return <Redirect to='/login' />;
+  return <Redirect to="/login" />;
   //   return <div>log out</div>;
 };
 

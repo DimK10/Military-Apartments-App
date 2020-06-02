@@ -1,8 +1,7 @@
-import React, { Fragment } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { Redirect, Route, Switch } from 'react-router-dom';
-import NavbarAndSidebar from '../layout/NavbarAndSidebar';
+import React, { Fragment } from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { Redirect, Route, Switch } from "react-router-dom";
 
 const AuthenticatedRoute = ({
   component: Component,
@@ -12,12 +11,10 @@ const AuthenticatedRoute = ({
   <Route
     {...rest}
     render={(props) =>
-      !isAuthenticated && !loading && !user ? (
-        <Redirect to='/login' />
+      !isAuthenticated && !loading && !user.email ? (
+        <Redirect to="/login" />
       ) : (
-        <Fragment>
-          <Component {...props} />
-        </Fragment>
+        <Component {...props} />
       )
     }
   />

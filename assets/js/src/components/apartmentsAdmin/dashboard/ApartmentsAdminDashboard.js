@@ -5,18 +5,18 @@ import { logout } from "../../../actions/auth";
 import { connect } from "react-redux";
 import NavbarAndSidebar from "../../layout/NavbarAndSidebar";
 
-const ApartmentsAdminDashboard = () => {
+const ApartmentsAdminDashboard = ({ logout }) => {
   return (
     <Fragment>
       <NavbarAndSidebar />
       Apartments Admin Dashboard page
-      <NavLink className="btn btn-primary" to="/api/logout">
+      <button className="btn btn-primary" onClick={logout}>
         Log Out
-      </NavLink>
+      </button>
     </Fragment>
   );
 };
 
 ApartmentsAdminDashboard.propTypes = {};
 
-export default ApartmentsAdminDashboard;
+export default connect(null, { logout })(ApartmentsAdminDashboard);

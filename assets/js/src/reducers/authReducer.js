@@ -9,12 +9,17 @@ import {
   REGISTER_FAIL,
   LOGOUT,
   LOGOUT_ERROR,
-} from '../actions/types';
+} from "../actions/types";
+
+const token = JSON.parse(localStorage.getItem("jwt"))
+  ? JSON.parse(localStorage.getItem("jwt")).token
+  : null;
 
 const initialState = {
+  token,
   isAuthenticated: false,
   loading: true,
-  user: null,
+  user: { email: null, roles: [] },
   errors: [],
 };
 
@@ -22,7 +27,6 @@ export default (state = initialState, action) => {
   const { type, payload } = action;
 
   switch (type) {
-    case LOGIN_SUCCESS:
     case USER_LOADED:
       return {
         ...state,
@@ -30,20 +34,26 @@ export default (state = initialState, action) => {
         isAuthenticated: true,
         loading: false,
       };
+    case REGISTER_SUCCESS:
+    case LOGIN_SUCCESS:
+      localStorage.setItem("jwt", JSON.stringify(payload));
+      return {
+        ...state,
+        ...payload,
+        isAuthenticated: true,
+        loading: false,
+      };
+    case REGISTER_FAIL:
     case LOGIN_FAIL:
     case LOGOUT:
     case AUTH_ERROR:
+      localStorage.removeItem("jwt");
       return {
         ...state,
+        token: null,
+        user: { email: null, roles: [] },
         isAuthenticated: false,
         loading: false,
-        user: null,
-      };
-    case LOGOUT_ERROR:
-      return {
-        ...state,
-        loading: false,
-        errors: payload,
       };
     default:
       return state;

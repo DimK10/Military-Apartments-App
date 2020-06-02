@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from "axios";
 
 import {
   USER_LOADED,
@@ -11,64 +11,59 @@ import {
   REGISTER_SUCCESS,
   REGISTER_FAIL,
   LOGOUT_ERROR,
-} from './types';
+} from "./types";
 
-import { setAlert } from './alert';
-import { Redirect } from 'react-router';
+import { setAlert } from "./alert";
 
-// Add session cookie in each request on axios
-let config = {
-  withCredentials: true,
-};
+// Helper function to set up token in Authorization header once
+import setAuthToken from "../utils/setAuthToken";
 
 // Load user
-// export const loadUser = () => async (dispatch) => {
-//   try {
-//       let res = await axios.post('/api/auth');
+export const loadUser = () => async (dispatch) => {
+  if (localStorage.getItem("jwt")) {
+    const jwt = localStorage.getItem("jwt");
+    const token = JSON.parse(jwt).token;
+    setAuthToken(token);
+  }
 
-//       dispatch({
-//           type: USER_LOADED,
-//           payload: res.data,
-//       });
+  try {
+    let res = await axios.post("/api/auth");
 
-//       // If user has an avatar, load it to redux as base64
-//       if (res.data.user.avatarId) {
-//           dispatch(loadUserAvatar(res.data.user.avatarId));
-//       }
-//   } catch (err) {
-//       console.error(err.message);
-//       dispatch({
-//           type: AUTH_ERROR,
-//       });
-//   }
-// };
+    dispatch({
+      type: USER_LOADED,
+      payload: res.data,
+    });
+  } catch (err) {
+    console.error(err.message);
+    dispatch({
+      type: AUTH_ERROR,
+    });
+  }
+};
 
 // Login user
 export const login = (email, password) => async (dispatch) => {
-  config = {
-    ...config,
+  const config = {
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
   };
 
   const body = JSON.stringify({ email, password });
 
   try {
-    const res = await axios.post('/api/login', body, config);
+    const res = await axios.post("/api/login", body, config);
 
     dispatch({
       type: LOGIN_SUCCESS,
       payload: res.data,
     });
-    // dispatch(loadUser());
-
-    window.location.reload(true);
+    dispatch(loadUser());
   } catch (err) {
     const errors = err.response.data.errors;
 
     if (errors) {
-      errors.forEach((error) => dispatch(setAlert(error.msg, 'danger')));
+      errors.forEach((error) => dispatch(setAlert(error.msg, "danger")));
     }
     dispatch({
       type: LOGIN_FAIL,
@@ -80,19 +75,19 @@ export const login = (email, password) => async (dispatch) => {
 export const registerUser = (formData) => async (dispatch) => {
   const config = {
     headers: {
-      'Content-Type': 'multipart/form-data',
+      "Content-Type": "multipart/form-data",
     },
   };
 
   try {
-    const res = await axios.post('/api/signup', formData, config);
+    const res = await axios.post("/api/signup", formData, config);
 
     dispatch({
       type: REGISTER_SUCCESS,
       payload: res.data,
     });
 
-    dispatch(setAlert('You have been registered successfully!', 'success'));
+    dispatch(setAlert("You have been registered successfully!", "success"));
   } catch (err) {
     dispatch({
       type: REGISTER_FAIL,
@@ -100,28 +95,15 @@ export const registerUser = (formData) => async (dispatch) => {
     const errors = err.response.data.errors;
 
     if (errors) {
-      errors.forEach((error) => dispatch(setAlert(error.msg, 'danger')));
+      errors.forEach((error) => dispatch(setAlert(error.msg, "danger")));
     }
   }
 };
 
 // Log out
 export const logout = () => async (dispatch) => {
-  try {
-    await axios.get('/api/logout', config);
-
-    // window.location.reload(true);
-    dispatch({
-      type: LOGOUT,
-    });
-    dispatch(setAlert('You have been logged out successfully!', 'success'));
-  } catch (err) {
-    dispatch({
-      type: LOGOUT_ERROR,
-      payload: {
-        msg: err.response.statusText,
-        status: err.response.status,
-      },
-    });
-  }
+  dispatch({
+    type: LOGOUT,
+  });
+  dispatch(setAlert("You have been logged out successfully!", "success"));
 };
