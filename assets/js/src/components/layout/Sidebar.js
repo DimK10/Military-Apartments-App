@@ -4,7 +4,10 @@ import PropTypes from "prop-types";
 const Sidebar = (props) => {
   return (
     <Fragment>
-      <div className={`c-sidebar c-sidebar-dark c-sidebar-fixed `} id="sidebar">
+      <div
+        className={`c-sidebar c-sidebar-dark c-sidebar-fixed c-sidebar-lg-show`}
+        id="sidebar"
+      >
         <div className="c-sidebar-brand d-md-down-none">
           {/* Main category name */}
           <h4 className="c-sidebar-nav-title">

@@ -1,14 +1,14 @@
 import React from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
-import ApartmentsAdminDashboard from "../apartmentsAdmin/dashboard/ApartmentsAdminDashboard";
-// import ApartmentsAdminRoute from './ApartmentsAdminRoute';
 import { connect } from "react-redux";
 import Login from "../auth/Login";
 import Logout from "../auth/Logout";
 import SelectDashboard from "../auth/SelectDashboard";
 import AuthenticatedRoute from "./AuthenticatedRoute";
 import ApartmentsAdminRoute from "./ApartmentsAdminRoute";
-// import {choosePath} from "../../helpers/routingHelpers";
+import UserDashboard from "../user/dashboard/UserDashboard";
+import ApartmentsAdminDashboard from "../apartmentsAdmin/dashboard/ApartmentsAdminDashboard";
+import UserRoute from "./UserRoute";
 
 const Routes = ({ auth: { isAuthenticated, loading, user } }) => {
   const choosePath = () => {
@@ -21,8 +21,11 @@ const Routes = ({ auth: { isAuthenticated, loading, user } }) => {
       // } else if (user.roles.includes('ROLE_ADMIN')) {
       //     return <Redirect to={"/admin/apartmentsAdmin"} />
       // }
+
       if (user.roles.length > 1) {
         return <Redirect to="/select-dashboard" />;
+      } else if (user.roles.includes("ROLE_USER")) {
+        return <Redirect to="/user/dashboard" />;
       } else if (user.roles.includes("ROLE_APARTMENTS_ADMIN")) {
         return <Redirect to={"/apartments-admin/dashboard"} />;
       } else if (user.roles.includes("ROLE_BUILDING_ADMIN")) {
@@ -45,6 +48,7 @@ const Routes = ({ auth: { isAuthenticated, loading, user } }) => {
         path="/select-dashboard"
         component={SelectDashboard}
       />
+      <UserRoute exact path="/user/dashboard" component={UserDashboard} />
       <ApartmentsAdminRoute
         exact
         path="/apartments-admin/dashboard"

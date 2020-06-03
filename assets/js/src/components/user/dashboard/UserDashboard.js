@@ -3,10 +3,10 @@ import PropTypes from "prop-types";
 import { logout } from "../../../actions/auth";
 import { connect } from "react-redux";
 
-const ApartmentsAdminDashboard = ({ logout }) => {
+const UserDashboard = ({ logout }) => {
   return (
     <Fragment>
-      Apartments Admin Dashboard page
+      <h2>User dashboard</h2>
       <button className="btn btn-primary" onClick={logout}>
         Αποσύνδεση
       </button>
@@ -14,8 +14,8 @@ const ApartmentsAdminDashboard = ({ logout }) => {
   );
 };
 
-ApartmentsAdminDashboard.propTypes = {
+UserDashboard.propTypes = {
   logout: PropTypes.func.isRequired,
 };
 
-export default connect(null, { logout })(ApartmentsAdminDashboard);
+export default connect(null, { logout })(UserDashboard);
