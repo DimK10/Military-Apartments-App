@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
 import Login from "../auth/Login";
@@ -9,6 +9,10 @@ import ApartmentsAdminRoute from "./ApartmentsAdminRoute";
 import UserDashboard from "../user/dashboard/UserDashboard";
 import ApartmentsAdminDashboard from "../apartmentsAdmin/dashboard/ApartmentsAdminDashboard";
 import UserRoute from "./UserRoute";
+import Sidebar from "../layout/Sidebar";
+import Navbar from "../layout/Navbar";
+import BuildingAdminRoute from "./BuildingAdminRoute";
+import BuildingAdminDashboard from "../buildingAdmin/dashboard/BuildingAdminDashboard";
 
 const Routes = ({ auth: { isAuthenticated, loading, user } }) => {
   const choosePath = () => {
@@ -39,22 +43,27 @@ const Routes = ({ auth: { isAuthenticated, loading, user } }) => {
   };
 
   return (
-    <Switch>
-      <Route exact path="/" render={choosePath} />
-      <Route exact path="/login" component={Login} />
-      <Route exact path="/api/logout" component={Logout} />
-      <AuthenticatedRoute
-        exact
-        path="/select-dashboard"
-        component={SelectDashboard}
-      />
-      <UserRoute exact path="/user/dashboard" component={UserDashboard} />
-      <ApartmentsAdminRoute
-        exact
-        path="/apartments-admin/dashboard"
-        component={ApartmentsAdminDashboard}
-      />
-    </Switch>
+    <div className="c-app">
+      <Sidebar />
+      <div className="c-wrapper">
+        <Navbar />
+        <Switch>
+          <Route exact path="/" render={choosePath} />
+
+          <UserRoute exact path="/user/dashboard" component={UserDashboard} />
+          <ApartmentsAdminRoute
+            exact
+            path="/apartments-admin/dashboard"
+            component={ApartmentsAdminDashboard}
+          />
+          <BuildingAdminRoute
+            exact
+            path={"/building-admin/dashboard"}
+            component={BuildingAdminDashboard}
+          />
+        </Switch>
+      </div>
+    </div>
   );
 };
 

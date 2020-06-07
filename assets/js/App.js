@@ -8,6 +8,9 @@ import { loadUser } from "./src/actions/auth";
 import setAuthToken from "./src/utils/setAuthToken";
 import Navbar from "./src/components/layout/Navbar";
 import Sidebar from "./src/components/layout/Sidebar";
+import Login from "./src/components/auth/Login";
+import AuthenticatedRoute from "./src/components/routing/AuthenticatedRoute";
+import SelectDashboard from "./src/components/auth/SelectDashboard";
 
 if (localStorage.getItem("jwt")) {
   const token = JSON.parse(localStorage.getItem("jwt")).token;
@@ -23,13 +26,15 @@ const App = () => {
     <Provider store={store}>
       <Router>
         <Fragment>
-          <Sidebar />
-          <div className="c-wrapper">
-            <Navbar />
-            <Switch>
-              <Route component={Routes} />
-            </Switch>
-          </div>
+          <Switch>
+            <Route exact path="/login" component={Login} />
+            <AuthenticatedRoute
+              exact
+              path="/select-dashboard"
+              component={SelectDashboard}
+            />
+            <Route component={Routes} />
+          </Switch>
         </Fragment>
       </Router>
     </Provider>
