@@ -24,24 +24,33 @@ const BuildingAdminSidebar = (props) => {
         </NavLink>
       </li>
       <li className="c-sidebar-nav-item">
-        <a href="#!" className="c-sidebar-nav-link text-wrap">
+        <NavLink
+          to="/building-admin/protocols"
+          className="c-sidebar-nav-link text-wrap"
+        >
           <i className="fas fa-file-alt fa-2x"></i>
           <span className="ml-2">
             Εκτύπωση Πρωτοκόλλου Παράδοσης Παραλαβής Δχστη ΣΟΑ
           </span>
-        </a>
+        </NavLink>
       </li>
       <li className="c-sidebar-nav-item">
-        <a href="#!" className="c-sidebar-nav-link text-wrap">
+        <NavLink
+          to="/building-admin/tenants"
+          className="c-sidebar-nav-link text-wrap"
+        >
           <i className="fas fa-address-book fa-2x"></i>
           <span className="ml-2">Αναλυτική Κατάσταση Στελεχών</span>
-        </a>
+        </NavLink>
       </li>
       <li className="c-sidebar-nav-item">
-        <a href="#!" className="c-sidebar-nav-link text-wrap">
+        <NavLink
+          to="/building-admin/apartments"
+          className="c-sidebar-nav-link text-wrap"
+        >
           <i className="fas fa-building fa-2x"></i>
-          <span className="ml-2">Διαμερίσματα</span>
-        </a>
+          <span className="ml-2">Διαμερίσματατα</span>
+        </NavLink>
       </li>
     </Fragment>
   );

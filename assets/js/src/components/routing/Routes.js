@@ -9,8 +9,11 @@ import Sidebar from "../layout/Sidebar";
 import Navbar from "../layout/Navbar";
 import BuildingAdminRoute from "./BuildingAdminRoute";
 import Receipts from "../buildingAdmin/receipts/Receipts";
-import SharedRent from "../buildingAdmin/dashboard/sharedRent/SharedRent";
+import SharedRent from "../buildingAdmin/sharedRent/SharedRent";
 import BuildingAdminDashboard from "../buildingAdmin/dashboard/BuildingAdminDashboard";
+import Protocols from "../buildingAdmin/protocols/Protocols";
+import BuildingAdminTenants from "../buildingAdmin/tenants/BuildingAdminTenants";
+import Apartments from "../buildingAdmin/apartments/Apartments";
 
 const Routes = ({ auth: { isAuthenticated, loading, user } }) => {
   const choosePath = () => {
@@ -55,6 +58,21 @@ const Routes = ({ auth: { isAuthenticated, loading, user } }) => {
               exact
               path={"/building-admin/shared-rent"}
               component={SharedRent}
+            />
+            <BuildingAdminRoute
+              exact
+              path={"/building-admin/protocols"}
+              component={Protocols}
+            />
+            <BuildingAdminRoute
+              exact
+              path={"/building-admin/tenants"}
+              component={BuildingAdminTenants}
+            />
+            <BuildingAdminRoute
+              exact
+              path={"/building-admin/apartments"}
+              component={Apartments}
             />
             <BuildingAdminRoute
               exact
