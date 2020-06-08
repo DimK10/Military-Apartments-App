@@ -21,10 +21,10 @@ Encore
    * (including one that's included on every page - e.g. "app")
    *
    * Each entry will result in one JavaScript file (e.g. App.js)
-   * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
+   * and one CSS file (e.g. custom.css) if your JavaScript imports CSS.
    */
   // .addEntry("js/vendor", "./assets/js/vendor.js")
-  // .addStyleEntry("css/coreui", "./assets/css/coreui.css")
+  .addStyleEntry("css/custom", "./assets/css/custom.css")
   // .addStyleEntry("css/coreui", "@coreui/coreui/dist/css/coreui.css")
   //.addEntry('page1', './assets/js/page1.js')
   //.addEntry('page2', './assets/js/page2.js')

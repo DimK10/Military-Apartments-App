@@ -1,0 +1,6 @@
+/* Custom css classes */
+
+.c-sidebar-nav-item .active {
+    color: #fff;
+    background: #321fdb;
+}

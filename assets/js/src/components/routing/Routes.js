@@ -1,18 +1,17 @@
 import React, { Fragment } from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
-import Login from "../auth/Login";
-import Logout from "../auth/Logout";
-import SelectDashboard from "../auth/SelectDashboard";
-import AuthenticatedRoute from "./AuthenticatedRoute";
 import ApartmentsAdminRoute from "./ApartmentsAdminRoute";
 import UserDashboard from "../user/dashboard/UserDashboard";
 import ApartmentsAdminDashboard from "../apartmentsAdmin/dashboard/ApartmentsAdminDashboard";
 import UserRoute from "./UserRoute";
 import Sidebar from "../layout/Sidebar";
 import Navbar from "../layout/Navbar";
-import BuildingAdminRoute from "./BuildingAdminRoute";
-import BuildingAdminDashboard from "../buildingAdmin/dashboard/BuildingAdminDashboard";
+// import BuildingAdminRoute from "./buildingAdmin/BuildingAdminRoute";
+// import BuildingAdminDashboard from "../buildingAdmin/dashboard/BuildingAdminDashboard";
+// import SharedRent from "../buildingAdmin/dashboard/sharedRent/SharedRent";
+// import Receipts from "../buildingAdmin/receipts/Receipts";
+import BuildingAdminRoutes from "./buildingAdmin/BuildingAdminRoutes";
 
 const Routes = ({ auth: { isAuthenticated, loading, user } }) => {
   const choosePath = () => {
@@ -47,21 +46,19 @@ const Routes = ({ auth: { isAuthenticated, loading, user } }) => {
       <Sidebar />
       <div className="c-wrapper">
         <Navbar />
-        <Switch>
-          <Route exact path="/" render={choosePath} />
+        <div className="c-body">
+          <Switch>
+            <UserRoute exact path="/user/dashboard" component={UserDashboard} />
+            <ApartmentsAdminRoute
+              exact
+              path="/apartments-admin/dashboard"
+              component={ApartmentsAdminDashboard}
+            />
+            <Route exact path="/" render={choosePath} />
 
-          <UserRoute exact path="/user/dashboard" component={UserDashboard} />
-          <ApartmentsAdminRoute
-            exact
-            path="/apartments-admin/dashboard"
-            component={ApartmentsAdminDashboard}
-          />
-          <BuildingAdminRoute
-            exact
-            path={"/building-admin/dashboard"}
-            component={BuildingAdminDashboard}
-          />
-        </Switch>
+            <Route component={BuildingAdminRoutes} />
+          </Switch>
+        </div>
       </div>
     </div>
   );

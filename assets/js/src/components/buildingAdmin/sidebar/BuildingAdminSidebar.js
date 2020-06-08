@@ -1,20 +1,27 @@
 import React, { Fragment } from "react";
 import PropTypes from "prop-types";
+import { NavLink } from "react-router-dom";
 
 const BuildingAdminSidebar = (props) => {
   return (
     <Fragment>
       <li className="c-sidebar-nav-item">
-        <a href="#!" className="c-sidebar-nav-link text-wrap">
+        <NavLink
+          to={"/building-admin/shared-rent"}
+          className="c-sidebar-nav-link text-wrap"
+        >
           <i className="fa fa-calculator fa-2x" aria-hidden="true"></i>
           <span className="ml-2">Υπολογισμός Μηνιαίων Κοινοχρήστων</span>
-        </a>
+        </NavLink>
       </li>
       <li className="c-sidebar-nav-item">
-        <a href="#!" className="c-sidebar-nav-link text-wrap">
+        <NavLink
+          to={"/building-admin/receipts"}
+          className="c-sidebar-nav-link text-wrap"
+        >
           <i className="fas fa-ticket-alt fa-2x" aria-hidden="true"></i>
           <span className="ml-2">Εκτύπωση Αποδείξεων</span>
-        </a>
+        </NavLink>
       </li>
       <li className="c-sidebar-nav-item">
         <a href="#!" className="c-sidebar-nav-link text-wrap">
