@@ -2,6 +2,7 @@ import React, { Fragment } from "react";
 import PropTypes from "prop-types";
 import BuildingAdminSidebar from "../buildingAdmin/sidebar/BuildingAdminSidebar";
 import { withRouter } from "react-router";
+import ApartmentsAdminSidebar from "../apartmentsAdmin/sidebar/ApartmentsAdminSidebar";
 
 const Sidebar = ({ location }) => {
   const showAppropriateSidebar = () => {
@@ -15,7 +16,7 @@ const Sidebar = ({ location }) => {
       // Show building administrator sidebar
       return <BuildingAdminSidebar />;
     } else if (url.includes("/apartments-admin/")) {
-      //    TODO - Show apartments admin sidebar
+      return <ApartmentsAdminSidebar />;
     } else if (url.includes("/admin/")) {
       //    TODO - Show admin sidebar
     }

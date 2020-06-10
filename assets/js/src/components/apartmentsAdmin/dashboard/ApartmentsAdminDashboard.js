@@ -3,19 +3,46 @@ import PropTypes from "prop-types";
 import { logout } from "../../../actions/auth";
 import { connect } from "react-redux";
 
-const ApartmentsAdminDashboard = ({ logout }) => {
+const ApartmentsAdminDashboard = ({
+  auth: {
+    user: { personInArmy: usr = null },
+  },
+}) => {
   return (
     <Fragment>
-      Apartments Admin Dashboard page
-      <button className="btn btn-primary" onClick={logout}>
-        Αποσύνδεση
-      </button>
+      <div className="jumbotron mb-0" style={{ height: "100vh" }}>
+        <h1 className="display-4">
+          Καλώς Ήλθατε Στο Πάνελ 4<sup>ου</sup> Επιτελικού Γραφείου
+        </h1>
+
+        <p className="lead">
+          Για να συνεχίσετε, επιλέξτε μία από τις κατηγορίες αριστερά.
+        </p>
+        <hr className="my-4"></hr>
+        <p>
+          Χρήστης:{" "}
+          {usr &&
+            usr.rank +
+              " " +
+              usr.specialty +
+              " " +
+              usr.surname +
+              " " +
+              usr.firstname}
+        </p>
+        <p>Μονάδα: {usr.unit.length > 0 ? usr.unit[0] : "Δεν έχει οριστεί"}</p>
+        <p>Συμβάντα: Κανένα</p>
+      </div>
     </Fragment>
   );
 };
 
 ApartmentsAdminDashboard.propTypes = {
-  logout: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
 };
 
-export default connect(null, { logout })(ApartmentsAdminDashboard);
+const mapStateToProps = (state) => ({
+  auth: state.authReducer,
+});
+
+export default connect(mapStateToProps)(ApartmentsAdminDashboard);

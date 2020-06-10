@@ -14,6 +14,7 @@ import BuildingAdminDashboard from "../buildingAdmin/dashboard/BuildingAdminDash
 import Protocols from "../buildingAdmin/protocols/Protocols";
 import BuildingAdminTenants from "../buildingAdmin/tenants/BuildingAdminTenants";
 import Apartments from "../buildingAdmin/apartments/Apartments";
+import ApartmentsAdminScoring from "../apartmentsAdmin/scoring/ApartmentsAdminScoring";
 
 const Routes = ({ auth: { isAuthenticated, loading, user } }) => {
   const choosePath = () => {
@@ -42,6 +43,12 @@ const Routes = ({ auth: { isAuthenticated, loading, user } }) => {
         <div className="c-body">
           <Switch>
             <UserRoute exact path="/user/dashboard" component={UserDashboard} />
+
+            <ApartmentsAdminRoute
+              exact
+              path="/apartments-admin/scoring"
+              component={ApartmentsAdminScoring}
+            />
 
             <ApartmentsAdminRoute
               exact
