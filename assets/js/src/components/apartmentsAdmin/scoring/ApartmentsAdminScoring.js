@@ -1,8 +1,13 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect } from "react";
 import PropTypes from "prop-types";
-import { NavLink } from "react-router-dom";
+import { connect } from "react-redux";
+import { getScores } from "../../../actions/scoring";
 
-const ApartmentsAdminScoring = (props) => {
+const ApartmentsAdminScoring = ({ getScores }) => {
+  useEffect(() => {
+    getScores();
+  }, [getScores]);
+
   return (
     <div className="c-main">
       <div className="container">
@@ -18,6 +23,12 @@ const ApartmentsAdminScoring = (props) => {
   );
 };
 
-ApartmentsAdminScoring.propTypes = {};
+ApartmentsAdminScoring.propTypes = {
+  getScores: PropTypes.func.isRequired,
+};
 
-export default ApartmentsAdminScoring;
+const mapStateToProps = (state) => ({
+  scores: state.scoreReducer,
+});
+
+export default connect(mapStateToProps, { getScores })(ApartmentsAdminScoring);

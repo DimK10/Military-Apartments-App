@@ -84,7 +84,6 @@ class PersonInArmyFixture extends BaseFixture implements DependentFixtureInterfa
     public function getDependencies()
     {
         return [
-            ScoringFixture::class,
             TenantFixture::class
         ];
     }

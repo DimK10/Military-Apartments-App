@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\ScoringRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=ScoringRepository::class)
@@ -18,52 +19,62 @@ class Scoring
     private $id;
 
     /**
+     * @Groups({"scoring:read"})
      * @ORM\Column(type="boolean")
      */
     private $isMarried;
 
     /**
+     * @Groups({"scoring:read"})
      * @ORM\Column(type="smallint")
      */
     private $hasNumOfChildren;
 
     /**
+     * @Groups({"scoring:read"})
      * @ORM\Column(type="boolean")
      */
     private $hasRelativeWithDisability;
 
     /**
+     * @Groups({"scoring:read"})
      * @ORM\Column(type="smallint")
      */
     private $monthsWaiting;
 
     /**
+     * @Groups({"scoring:read"})
      * @ORM\Column(type="smallint")
      */
     private $monthsHoused;
 
     /**
+     * @Groups({"scoring:read"})
      * @ORM\Column(type="smallint")
      */
     private $monthsAbroad;
 
     /**
+     * @Groups({"scoring:read"})
      * @ORM\Column(type="string", length=255)
      */
     private $income;
 
     /**
+     * @Groups({"scoring:read"})
      * @ORM\Column(type="smallint")
      */
     private $score;
 
     /**
+     * @Groups({"scoring:read"})
      * @ORM\OneToOne(targetEntity=PersonInArmy::class, mappedBy="scoring", cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=true)
      */
     private $personInArmy;
 
     /**
+     * @Groups({"scoring:read"})
      * @ORM\Column(type="smallint", nullable=true)
      */
     private $exceptionCode;

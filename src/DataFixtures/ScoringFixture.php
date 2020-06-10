@@ -9,7 +9,7 @@ use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ObjectManager;
 
-class ScoringFixture extends Fixture
+class ScoringFixture extends BaseFixture implements DependentFixtureInterface
 {
 
     /**
@@ -22,35 +22,55 @@ class ScoringFixture extends Fixture
         $this->em = $em;
     }
 
-    public function load(ObjectManager $manager)
+    public function loadData(ObjectManager $manager)
     {
-        for ($i=0; $i < 22; $i++) {
+//        for ($i=0; $i < 22; $i++) {
+//
+////            $personInArmy = $this->em->getRepository(PersonInArmy::class)->find($i);
+//
+//            $scoring = new Scoring();
+//            $scoring->setPersonInArmy(null);
+//
+//            $scoring->setIsMarried(false);
+//            $scoring->setHasNumOfChildren(0);
+//            $scoring->setHasRelativeWithDisability(false);
+//            $scoring->setMonthsWaiting(0);
+//            $scoring->setMonthsHoused(0);
+//            $scoring->setMonthsAbroad(0);
+//            $scoring->setIncome(0);
+//            $scoring->setScore(0);
+//            $scoring->setExceptionCode(null);
+//
+//            $manager->persist($scoring);
+//        }
 
-//            $personInArmy = $this->em->getRepository(PersonInArmy::class)->find($i);
-
+        $this->createMany(22, 'scorings', function ($i) {
             $scoring = new Scoring();
-            $scoring->setPersonInArmy(null);
 
-            $scoring->setIsMarried(false);
-            $scoring->setHasNumOfChildren(0);
-            $scoring->setHasRelativeWithDisability(false);
-            $scoring->setMonthsWaiting(0);
-            $scoring->setMonthsHoused(0);
-            $scoring->setMonthsAbroad(0);
-            $scoring->setIncome(0);
+            $scoring->setPersonInArmy($this->getReference(sprintf('peopleInArmy_%d', $i)));
+
+            $scoring->setIsMarried($this->faker->boolean());
+            $scoring->setHasNumOfChildren($this->faker->numberBetween(1, 5));
+            $scoring->setHasRelativeWithDisability($this->faker->boolean());
+            $scoring->setMonthsWaiting($this->faker->randomNumber(3));
+            $scoring->setMonthsHoused($this->faker->randomNumber(3));
+            $scoring->setMonthsAbroad($this->faker->randomNumber(3));
+            $scoring->setIncome(12000);
             $scoring->setScore(0);
             $scoring->setExceptionCode(null);
 
-            $manager->persist($scoring);
-        }
+            return $scoring;
+        });
 
         $manager->flush();
     }
 
-//    public function getDependencies()
-//    {
-//        return [
-//            PersonInArmyFixture::class
-//        ];
-//    }
+    public function getDependencies()
+    {
+        return [
+            PersonInArmyFixture::class
+        ];
+    }
+
+
 }

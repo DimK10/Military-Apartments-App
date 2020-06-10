@@ -30,7 +30,7 @@ const ApartmentsAdminDashboard = ({
               " " +
               usr.firstname}
         </p>
-        <p>Μονάδα: {usr.unit.length > 0 ? usr.unit[0] : "Δεν έχει οριστεί"}</p>
+        <p>Μονάδα: {usr.unit ? usr.unit : "Δεν έχει οριστεί"}</p>
         <p>Συμβάντα: Κανένα</p>
       </div>
     </Fragment>
