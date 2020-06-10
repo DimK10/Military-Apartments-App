@@ -74,6 +74,11 @@ class PersonInArmy
      */
     private $user;
 
+    /**
+     * @ORM\Column(type="date", nullable=true)
+     */
+    private $lastHousingDate;
+
     public function __construct()
     {
         $this->user = new ArrayCollection();
@@ -208,6 +213,18 @@ class PersonInArmy
                 $user->setPersonInArmy(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getLastHousingDate(): ?\DateTimeInterface
+    {
+        return $this->lastHousingDate;
+    }
+
+    public function setLastHousingDate(?\DateTimeInterface $lastHousingDate): self
+    {
+        $this->lastHousingDate = $lastHousingDate;
 
         return $this;
     }
