@@ -15,11 +15,6 @@ const Login = ({
     if (isAuthenticated) history.push("/");
   }, [isAuthenticated]);
 
-  // Check if there is a previous route in localStorage
-  // If so, then there should be no reason to show login page
-  if (localStorage.getItem("lastRoute") !== null)
-    return "loading modal here...";
-
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -40,6 +35,11 @@ const Login = ({
   // if (isAuthenticated) {
   //   return <Redirect to="/" />;
   // }
+
+  // Check if there is a previous route in localStorage
+  // If so, then there should be no reason to show login page
+  if (localStorage.getItem("lastRoute") !== null)
+    return "loading modal here...";
 
   return (
     <Fragment>
