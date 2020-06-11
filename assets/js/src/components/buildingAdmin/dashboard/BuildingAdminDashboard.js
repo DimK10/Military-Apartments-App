@@ -10,7 +10,7 @@ const BuildingAdminDashboard = ({ auth: { user: { personInArmy: usr = null } }})
         <p className="lead">Για να συνεχίσετε, επιλέξτε μία από τις κατηγορίες αριστερά.</p>
         <hr className="my-4"></hr>
         <p>Χρήστης: {usr && usr.rank + ' ' + usr.specialty + ' ' + usr.surname + ' ' + usr.firstname}</p>
-        <p>Μονάδα: {usr.unit.length > 0 ? usr.unit[0] : 'Δεν έχει οριστεί'}</p>
+        <p>Μονάδα: {usr.unit ? usr.unit : 'Δεν έχει οριστεί'}</p>
         <p>Συμβάντα: Κανένα</p>
       </div>
   )

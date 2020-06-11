@@ -19,6 +19,17 @@ import ApartmentsAdminScoring from "../apartmentsAdmin/scoring/ApartmentsAdminSc
 const Routes = ({ auth: { isAuthenticated, loading, user } }) => {
   const choosePath = () => {
     if (isAuthenticated && user) {
+      console.log(localStorage.getItem("lastRoute"));
+      console.log(localStorage.getItem("lastRoute") === "/");
+      if (
+        localStorage.getItem("lastRoute") !== null &&
+        localStorage.getItem("lastRoute") !== "/"
+      ) {
+        // User refreshed the page - redirect to that page
+        let url = localStorage.getItem("lastRoute");
+        return <Redirect to={url} />;
+      }
+
       if (user.roles.length > 1) {
         return <Redirect to="/select-dashboard" />;
       } else if (user.roles.includes("ROLE_USER")) {

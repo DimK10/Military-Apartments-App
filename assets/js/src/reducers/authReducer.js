@@ -48,6 +48,7 @@ export default (state = initialState, action) => {
     case LOGOUT:
     case AUTH_ERROR:
       localStorage.removeItem("jwt");
+      localStorage.removeItem("lastRoute");
       return {
         ...state,
         token: null,
