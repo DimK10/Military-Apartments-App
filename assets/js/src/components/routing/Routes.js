@@ -17,10 +17,9 @@ import Apartments from "../buildingAdmin/apartments/Apartments";
 import ApartmentsAdminScoring from "../apartmentsAdmin/scoring/ApartmentsAdminScoring";
 
 const Routes = ({ auth: { isAuthenticated, loading, user } }) => {
+  // FIXME - Maybe create a component for / and redirect with history.push? That way a loading modal can be shown
   const choosePath = () => {
     if (isAuthenticated && user) {
-      console.log(localStorage.getItem("lastRoute"));
-      console.log(localStorage.getItem("lastRoute") === "/");
       if (
         localStorage.getItem("lastRoute") !== null &&
         localStorage.getItem("lastRoute") !== "/"
