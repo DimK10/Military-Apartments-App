@@ -11,11 +11,14 @@ const Login = ({
   auth: { isAuthenticated, loading, user },
   history,
 }) => {
-  // useEffect(() =>{
-  //   if (isAuthenticated && !loading) {
-  //     history.push('/')
-  //   }
-  // },[isAuthenticated, loading]);
+  useEffect(() => {
+    if (isAuthenticated) history.push("/");
+  }, [isAuthenticated]);
+
+  // Check if there is a previous route in localStorage
+  // If so, then there should be no reason to show login page
+  if (localStorage.getItem("lastRoute") !== null)
+    return "loading modal here...";
 
   const [formData, setFormData] = useState({
     email: "",
@@ -33,11 +36,10 @@ const Login = ({
     await login(email, password);
   };
 
-  // Redirect if logged in -- i need to make this logic better
-  if (isAuthenticated) {
-    // choosePath(isAuthenticated, loading, user);
-    return <Redirect to="/" />;
-  }
+  // Redirect if logged in
+  // if (isAuthenticated) {
+  //   return <Redirect to="/" />;
+  // }
 
   return (
     <Fragment>
