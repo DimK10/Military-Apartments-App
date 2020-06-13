@@ -19,7 +19,6 @@ const Rerouter = ({ history, auth: { isAuthenticated, loading, user } }) => {
         let url = localStorage.getItem("lastRoute");
         history.push(url);
       }
-      console.log(user.roles.length);
 
       if (user.roles.length > 1) {
         history.push("/select-dashboard");
