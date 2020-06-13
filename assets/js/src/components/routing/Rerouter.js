@@ -19,23 +19,23 @@ const Rerouter = ({ history, auth: { isAuthenticated, loading, user } }) => {
         let url = localStorage.getItem("lastRoute");
         history.push(url);
       }
+      console.log(user.roles.length);
 
-      if (user.roles.length > 1) history.push("/select-dashboard");
-
-      if (user.roles.includes("ROLE_USER")) history.push("/user/dashboard");
-
-      if (user.roles.includes("ROLE_APARTMENTS_ADMIN"))
+      if (user.roles.length > 1) {
+        history.push("/select-dashboard");
+      } else if (user.roles.includes("ROLE_USER")) {
+        history.push("/user/dashboard");
+      } else if (user.roles.includes("ROLE_APARTMENTS_ADMIN")) {
         history.push("/apartments-admin/dashboard");
-
-      if (user.roles.includes("ROLE_BUILDING_ADMIN"))
+      } else if (user.roles.includes("ROLE_BUILDING_ADMIN")) {
         history.push("/building-admin/dashboard");
-
-      if (user.roles.includes("ROLE_ADMIN"))
+      } else if (user.roles.includes("ROLE_ADMIN")) {
         history.push('/admin/apartmentsAdmin"');
+      }
     } else {
       history.push("/login");
     }
-  });
+  }, [user, isAuthenticated]);
 
   return <div>Some Nice Loading here!!!</div>;
 };
