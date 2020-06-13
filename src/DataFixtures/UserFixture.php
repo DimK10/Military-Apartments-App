@@ -26,7 +26,14 @@ class UserFixture extends BaseFixture implements DependentFixtureInterface
             $user = new User();
 
             $user->setEmail(sprintf('user%d@gmail.com', $i));
-            $user->setRoles([]);
+            if ($i === 1) {
+                $user->setRoles(["ROLE_APARTMENTS_ADMIN"]);
+            } else if ($i === 2)  {
+                $user->setRoles(["ROLE_BUILDING_ADMIN"]);
+
+            }else {
+                $user->setRoles([]);
+            }
             $user->setPassword($this->passwordEncoder->encodePassword($user, '123456'));
             $user->setPersonInArmy($this->getRandomReference('peopleInArmy'));
 

@@ -191,6 +191,7 @@ class Scoring
     public function setPersonInArmy($personInArmy): void
     {
         $this->personInArmy = $personInArmy;
+        $personInArmy->setScoring($this);
     }
 
     public function getExceptionCode(): ?int

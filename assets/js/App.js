@@ -11,6 +11,7 @@ import Sidebar from "./src/components/layout/Sidebar";
 import Login from "./src/components/auth/Login";
 import AuthenticatedRoute from "./src/components/routing/AuthenticatedRoute";
 import SelectDashboard from "./src/components/auth/SelectDashboard";
+import NotAuthorized from "./src/components/layout/NotAuthorized";
 
 if (localStorage.getItem("jwt")) {
   const token = JSON.parse(localStorage.getItem("jwt")).token;
@@ -28,6 +29,7 @@ const App = () => {
         <Fragment>
           <Switch>
             <Route exact path="/login" component={Login} />
+            <Route exact path="/not-authorized" component={NotAuthorized} />
             <AuthenticatedRoute
               exact
               path="/select-dashboard"
