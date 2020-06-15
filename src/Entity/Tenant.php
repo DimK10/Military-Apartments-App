@@ -72,8 +72,11 @@ class Tenant
         return $this->members;
     }
 
-    public function addMembers(Member $member): self
+    public function addMembers(?Member $member): self
     {
+        if (null === $member)
+            return $this;
+
         if (!$this->members->contains($member)) {
             $this->members[] = $member;
             $member->setTenant($this);
@@ -103,8 +106,11 @@ class Tenant
         return $this->vehicles;
     }
 
-    public function addVehicle(Vehicle $vehicle): self
+    public function addVehicle(?Vehicle $vehicle): self
     {
+        if (null === $vehicle)
+            return $this;
+
         if (!$this->vehicles->contains($vehicle)) {
             $this->vehicles[] = $vehicle;
             $vehicle->setTenant($this);

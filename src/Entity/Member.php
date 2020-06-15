@@ -76,6 +76,8 @@ class Member
     {
         $this->tenant = $tenant;
 
+        $tenant->addMembers($this);
+
         return $this;
     }
 }

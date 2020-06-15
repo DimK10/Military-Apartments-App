@@ -4,9 +4,10 @@ namespace App\DataFixtures;
 
 use App\Entity\Vehicle;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 
-class VehicleFixture extends BaseFixture
+class VehicleFixture extends BaseFixture implements DependentFixtureInterface
 {
     public function loadData(ObjectManager $manager)
     {
@@ -16,12 +17,20 @@ class VehicleFixture extends BaseFixture
             $vehicle->setBrand('brand_car_'.$i);
             $vehicle->setColor($this->faker->colorName);
             $vehicle->setLicencePlate('ABC '.$this->faker->numberBetween(1000, 9999));
-            // TODO - Change to Tenant
-            $vehicle->setTenant(null);
+            $vehicle->setTenant($this->getRandomReference('tenants'));
 
             return $vehicle;
         });
 
         $manager->flush();
     }
+
+    public function getDependencies()
+    {
+        return [
+            TenantFixture::class
+        ];
+    }
+
+
 }

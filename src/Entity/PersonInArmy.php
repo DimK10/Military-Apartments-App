@@ -147,6 +147,9 @@ class PersonInArmy
     {
         $this->tenant = $tenant;
 
+        if (null !== $tenant)
+            $tenant->setPersonInArmy($this);
+
         return $this;
     }
 

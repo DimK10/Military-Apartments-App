@@ -3,9 +3,10 @@
 namespace App\DataFixtures;
 
 use App\Entity\Member;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 
-class MemberFixtures extends BaseFixture
+class MemberFixtures extends BaseFixture implements DependentFixtureInterface
 {
     public function loadData(ObjectManager $manager)
     {
@@ -13,13 +14,19 @@ class MemberFixtures extends BaseFixture
             $member = new Member();
             $member->setFirstName($this->faker->firstName);
             $member->setLastName($this->faker->lastName);
-            // TODO - Actually set a tenant hee and make it not nullable
-            $member->setTenant(null);
+            $member->setTenant($this->getRandomReference('tenants'));
 
             return $member;
 
         });
 
         $manager->flush();
+    }
+
+    public function getDependencies()
+    {
+        return [
+            TenantFixture::class
+        ];
     }
 }

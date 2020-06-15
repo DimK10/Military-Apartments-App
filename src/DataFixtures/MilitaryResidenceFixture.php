@@ -33,7 +33,7 @@ class MilitaryResidenceFixture extends BaseFixture implements DependentFixtureIn
                 'ΣΟΕΠΟΠ'
             );
 
-            $floors = $this->faker->numberBetween(0, 4);
+            $floors = $this->faker->numberBetween(1, 4);
             $apartments = $floors * 7;
 
             $militaryResidence = new MilitaryResidence();
@@ -52,6 +52,13 @@ class MilitaryResidenceFixture extends BaseFixture implements DependentFixtureIn
             $militaryResidence->setAddress($this->faker->address);
             $militaryResidence->setFloors($floors);
             $militaryResidence->setNumberOfApartments($apartments);
+
+            if ($i < 21) {
+                $militaryResidence->addApartment($this->getReference(sprintf('apartments_%d', $i)));
+            } else {
+                $militaryResidence->addApartment($this->getReference(sprintf('apartments_%d', $i - 21)));
+            }
+
             $militaryResidence->addApartment($this->getRandomReference('apartments'));
 
             return $militaryResidence;

@@ -11,7 +11,7 @@ class UnitFixture extends BaseFixture implements DependentFixtureInterface
     public function loadData(ObjectManager $manager)
     {
 
-       $this->createMany(25, 'units', function () {
+       $this->createMany(22, 'units', function ($i) {
 
            $dummyUnits = array(
                '12 ΤΥΠ',
@@ -28,7 +28,7 @@ class UnitFixture extends BaseFixture implements DependentFixtureInterface
            $unit = new Unit();
 
            $unit->setName($dummyUnits[$this->faker->numberBetween(0, 8)]);
-           $unit->addPeopleInArmy($this->getRandomReference('peopleInArmy'));
+           $unit->addPeopleInArmy($this->getReference(sprintf('peopleInArmy_%d', $i)));
            return $unit;
        });
 

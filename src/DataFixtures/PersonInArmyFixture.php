@@ -71,7 +71,13 @@ class PersonInArmyFixture extends BaseFixture implements DependentFixtureInterfa
             $personInArmy->setSpecialty((string)$randomSpecialty[rand(0, 7)]);
 
             $personInArmy->setUnit(null);
-            $personInArmy->setTenant(null);
+
+            if ($i < 20) {
+                $personInArmy->setTenant($this->getReference(sprintf('tenants_%d', $i + 1)));
+            } else {
+                $personInArmy->setTenant(null);
+            }
+
             $personInArmy->setScoring(null);
             $personInArmy->setUser(new ArrayCollection());
 
