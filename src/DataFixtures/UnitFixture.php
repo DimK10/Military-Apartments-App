@@ -10,10 +10,24 @@ class UnitFixture extends BaseFixture implements DependentFixtureInterface
 {
     public function loadData(ObjectManager $manager)
     {
+
        $this->createMany(25, 'units', function () {
+
+           $dummyUnits = array(
+               '12 ΤΥΠ',
+               '12 Μ/Κ ΜΠ',
+               'ΓΕΣ/ΔΠΖ',
+               'ΔΥΒ/ΔΟΙ',
+               'ΚΕΕΜ',
+               'ΚΕΥΠ',
+               '98 ΤΥΠΕΘ',
+               'ΣΣΕ',
+               'ΣΜΥ',
+           );
+
            $unit = new Unit();
 
-           $unit->setName($this->faker->company);
+           $unit->setName($dummyUnits[$this->faker->numberBetween(0, 8)]);
            $unit->addPeopleInArmy($this->getRandomReference('peopleInArmy'));
            return $unit;
        });

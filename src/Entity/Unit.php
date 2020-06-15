@@ -12,6 +12,9 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Unit
 {
+
+//    TODO - Connect unit with location somehow?
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()

@@ -27,9 +27,9 @@ class UserFixture extends BaseFixture implements DependentFixtureInterface
 
             $user->setEmail(sprintf('user%d@gmail.com', $i));
             if ($i === 1) {
-                $user->setRoles(["ROLE_APARTMENTS_ADMIN"]);
+                $user->setRoles(["ROLE_APARTMENTS_ADMIN", "ROLE_USER"]);
             } else if ($i === 2)  {
-                $user->setRoles(["ROLE_BUILDING_ADMIN"]);
+                $user->setRoles(["ROLE_BUILDING_ADMIN", "ROLE_USER"]);
 
             }else {
                 $user->setRoles([]);

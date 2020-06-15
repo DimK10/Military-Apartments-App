@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
 import { getScores } from "../../../actions/scoring";
+import { CSSTransition } from "react-transition-group";
 
 const ApartmentsAdminScoring = ({ getScores, scoresObj: { scores } }) => {
   useEffect(() => {

@@ -185,6 +185,8 @@ class Tenant
     public function setPersonInArmy($personInArmy): void
     {
         $this->personInArmy = $personInArmy;
+
+
     }
 
 //
