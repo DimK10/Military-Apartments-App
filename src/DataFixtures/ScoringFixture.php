@@ -45,6 +45,11 @@ class ScoringFixture extends BaseFixture implements DependentFixtureInterface
 //        }
 
         $this->createMany(22, 'scorings', function ($i) {
+
+            $positiveScore = $this->faker->numberBetween(51, 99);
+            $negativeScore = $this->faker->numberBetween(0, 50);
+            $generalScore = $positiveScore - $negativeScore;
+
             $scoring = new Scoring();
 
             $scoring->setPersonInArmy($this->getReference(sprintf('peopleInArmy_%d', $i)));
@@ -56,8 +61,11 @@ class ScoringFixture extends BaseFixture implements DependentFixtureInterface
             $scoring->setMonthsHoused($this->faker->randomNumber(3));
             $scoring->setMonthsAbroad($this->faker->randomNumber(3));
             $scoring->setIncome(12000);
-            $scoring->setScore(0);
-            $scoring->setExceptionCode(null);
+            $scoring->setPositiveScore($positiveScore);
+            $scoring->setNegativeScore($negativeScore);
+            $scoring->setGeneralScore($generalScore);
+            $scoring->setExceptionCode(0);
+            $scoring->setWishesToBeHoused($this->faker->boolean());
 
             return $scoring;
         });

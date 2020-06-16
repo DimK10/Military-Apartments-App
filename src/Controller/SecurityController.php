@@ -24,7 +24,7 @@ class SecurityController extends AbstractController
             ], 400);
         }
 
-        return new Response($serializer->serialize($this->getUser(), 'json', ['groups' => 'user:read']));
+        return new Response($serializer->serialize($this->getUser(), 'json', ['groups' => ['user:read']]));
         //        return $this->json($this->getUser(), 200);
     }
 

@@ -62,12 +62,6 @@ class Scoring
 
     /**
      * @Groups({"scoring:read"})
-     * @ORM\Column(type="smallint")
-     */
-    private $score;
-
-    /**
-     * @Groups({"scoring:read"})
      * @ORM\OneToOne(targetEntity=PersonInArmy::class, mappedBy="scoring", cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=true)
      */
@@ -78,6 +72,30 @@ class Scoring
      * @ORM\Column(type="smallint", nullable=true)
      */
     private $exceptionCode;
+
+    /**
+     * @Groups({"scoring:read"})
+     * @ORM\Column(type="smallint")
+     */
+    private $generalScore;
+
+    /**
+     * @Groups({"scoring:read"})
+     * @ORM\Column(type="smallint")
+     */
+    private $positiveScore;
+
+    /**
+     * @Groups({"scoring:read"})
+     * @ORM\Column(type="smallint")
+     */
+    private $negativeScore;
+
+    /**
+     * @Groups({"scoring:read"})
+     * @ORM\Column(type="boolean")
+     */
+    private $wishesToBeHoused;
 
     public function getId(): ?int
     {
@@ -168,18 +186,6 @@ class Scoring
         return $this;
     }
 
-    public function getScore(): ?int
-    {
-        return $this->score;
-    }
-
-    public function setScore(int $score): self
-    {
-        $this->score = $score;
-
-        return $this;
-    }
-
     public function getPersonInArmy(): ?PersonInArmy
     {
         return $this->personInArmy;
@@ -202,6 +208,54 @@ class Scoring
     public function setExceptionCode(?int $exceptionCode): self
     {
         $this->exceptionCode = $exceptionCode;
+
+        return $this;
+    }
+
+    public function getGeneralScore(): ?int
+    {
+        return $this->generalScore;
+    }
+
+    public function setGeneralScore(int $generalScore): self
+    {
+        $this->generalScore = $generalScore;
+
+        return $this;
+    }
+
+    public function getPositiveScore(): ?int
+    {
+        return $this->positiveScore;
+    }
+
+    public function setPositiveScore(int $positiveScore): self
+    {
+        $this->positiveScore = $positiveScore;
+
+        return $this;
+    }
+
+    public function getNegativeScore(): ?int
+    {
+        return $this->negativeScore;
+    }
+
+    public function setNegativeScore(int $negativeScore): self
+    {
+        $this->negativeScore = $negativeScore;
+
+        return $this;
+    }
+
+    public function getWishesToBeHoused(): ?bool
+    {
+        return $this->wishesToBeHoused;
+    }
+
+    public function setWishesToBeHoused(bool $wishesToBeHoused): self
+    {
+        $this->wishesToBeHoused = $wishesToBeHoused;
 
         return $this;
     }

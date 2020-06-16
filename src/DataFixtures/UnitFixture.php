@@ -5,6 +5,7 @@ namespace App\DataFixtures;
 use App\Entity\Unit;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
+use phpDocumentor\Reflection\Location;
 
 class UnitFixture extends BaseFixture implements DependentFixtureInterface
 {
@@ -25,10 +26,25 @@ class UnitFixture extends BaseFixture implements DependentFixtureInterface
                'ΣΜΥ',
            );
 
+           $locations = array(
+               'ΑΘΗΝΑ',
+               'ΛΑΜΙΑ',
+               'ΞΑΝΘΗ',
+               'ΑΛΕΞΑΝΔΡΟΥΠΟΛΗ',
+               'ΚΟΜΟΤΗΝΗ',
+               'ΒΟΛΟΣ',
+               'ΛΕΣΒΟΣ',
+               'ΚΙΛΚΙΣ',
+               'ΣΠΑΡΤΗ',
+               'ΤΡΙΚΑΛΑ',
+               'ΛΑΡΙΣΣΑ'
+           );
+
            $unit = new Unit();
 
            $unit->setName($dummyUnits[$this->faker->numberBetween(0, 8)]);
            $unit->addPeopleInArmy($this->getReference(sprintf('peopleInArmy_%d', $i)));
+           $unit->setLocation($locations[$this->faker->numberBetween(0, 10)]);
            return $unit;
        });
 
