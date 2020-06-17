@@ -14,7 +14,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
 class Unit
 {
 
-//    TODO - Connect unit with location somehow?
+//    TODO - Connect unit with location somehow? Or even better, make location as an entity?
 
     /**
      * @ORM\Id()
