@@ -39,6 +39,22 @@ const Navbar = ({
           <ul className="c-header-nav d-md-down-none"></ul>
           <ul className="c-header-nav mfs-auto"></ul>
           <ul className="c-header-nav">
+            <li className="c-header-nav-item px-3 c-d-legacy-none">
+              {/*<button*/}
+              {/*  className="c-class-toggler c-header-nav-btn"*/}
+              {/*  type="button"*/}
+              {/*  id="header-tooltip"*/}
+              {/*  data-target="body"*/}
+              {/*  data-class="c-dark-theme"*/}
+              {/*  data-toggle="c-tooltip"*/}
+              {/*  data-placement="bottom"*/}
+              {/*  title=""*/}
+              {/*  data-original-title="Toggle Light/Dark Mode"*/}
+              {/*>*/}
+              {/*  <i className="c-icon c-d-dark-none"></i>*/}
+              {/*  <i className="c-icon c-d-default-none"></i>*/}
+              {/*</button>*/}
+            </li>
             <li className="c-header-nav-item dropdown">
               <a
                 className="c-header-nav-link"

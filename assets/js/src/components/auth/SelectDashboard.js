@@ -1,14 +1,14 @@
-import React, { Fragment, useState } from 'react';
-import PropTypes from 'prop-types';
-import { v4 as uuidv4 } from 'uuid';
-import { NavLink, withRouter } from 'react-router-dom';
-import { connect } from 'react-redux';
+import React, { Fragment, useState } from "react";
+import PropTypes from "prop-types";
+import { v4 as uuidv4 } from "uuid";
+import { NavLink, withRouter } from "react-router-dom";
+import { connect } from "react-redux";
 
 const SelectDashboard = ({ auth: { user }, history }) => {
-  const [selectedDashboard, setSelectedDashboard] = useState('');
+  const [selectedDashboard, setSelectedDashboard] = useState("");
 
   const chooseDashboard = () => {
-    if (selectedDashboard !== '') {
+    if (selectedDashboard !== "") {
       history.push(selectedDashboard);
     } else {
       // TODO - set alert error
@@ -21,47 +21,47 @@ const SelectDashboard = ({ auth: { user }, history }) => {
 
   return (
     <Fragment>
-      <div className='c-app flex-row align-items-center'>
-        <div className='container'>
-          <div className='row justify-content-center'>
-            <div className='col-md-8'>
-              <div className='card-group'>
-                <div className='card p-4'>
-                  <div className='card-body'>
+      <div className="c-app flex-row align-items-center">
+        <div className="container">
+          <div className="row justify-content-center">
+            <div className="col-md-8">
+              <div className="card-group">
+                <div className="card p-4">
+                  <div className="card-body">
                     Επιλέξτε αν θέλετε να εισέλθετε ως:
                     <select
-                      className='custom-select'
+                      className="form-control"
                       onChange={(e) => onChange(e)}
                     >
-                      <option defaultValue>--Επιλογές--</option>
+                      <option value="">--Επιλογές--</option>
                       {user.roles.map((role) => {
                         switch (role) {
-                          case 'ROLE_USER':
+                          case "ROLE_USER":
                             return (
                               <option
                                 key={uuidv4()}
-                                className='dropdown-item'
-                                value='/user/dashboard'
+                                className="dropdown-item"
+                                value="/user/dashboard"
                               >
                                 Απλός Χρήστης
                               </option>
                             );
-                          case 'ROLE_APARTMENTS_ADMIN':
+                          case "ROLE_APARTMENTS_ADMIN":
                             return (
                               <option
                                 key={uuidv4()}
-                                className='dropdown-item'
-                                value='/apartments-admin/dashboard'
+                                className="dropdown-item"
+                                value="/apartments-admin/dashboard"
                               >
                                 Διαχειριστής Πολυκατοικιών - 4οΕΓ
                               </option>
                             );
-                          case 'ROLE_BUILDING_ADMIN':
+                          case "ROLE_BUILDING_ADMIN":
                             return (
                               <option
                                 key={uuidv4()}
-                                className='dropdown-item'
-                                value='building-admin/dashboard'
+                                className="dropdown-item"
+                                value="building-admin/dashboard"
                               >
                                 Διχειριστης Πολυκατοικίας
                               </option>
@@ -70,8 +70,9 @@ const SelectDashboard = ({ auth: { user }, history }) => {
                       })}
                     </select>
                     <button
-                      className='btn btn-primary'
+                      className="btn btn-primary"
                       onClick={chooseDashboard}
+                      disabled={selectedDashboard === "" ? true : false}
                     >
                       Είσοδος
                     </button>

@@ -22,19 +22,21 @@ class PersonInArmyRepository extends ServiceEntityRepository
     // /**
     //  * @return PersonInArmy[] Returns an array of PersonInArmy objects
     //  */
-    /*
-    public function findByExampleField($value)
+
+    public function findAllNoScoreSameLocation(string $query)
     {
+        //TODO - Add asc desc functionality based on rank
         return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('p.id', 'ASC')
-            ->setMaxResults(10)
+            ->leftJoin('p.unit', 'u')
+            ->addSelect('u')
+            ->andWhere('p.scoring is NULL')
+            ->andWhere('u.location LIKE :query')
+            ->setParameter('query', '%'.$query.'%')
             ->getQuery()
             ->getResult()
         ;
     }
-    */
+
 
     /*
     public function findOneBySomeField($value): ?PersonInArmy

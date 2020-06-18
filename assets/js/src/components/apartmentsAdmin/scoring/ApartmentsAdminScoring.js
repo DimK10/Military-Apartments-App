@@ -3,21 +3,39 @@ import PropTypes from "prop-types";
 import Modal from "react-modal";
 import { connect } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
-import { getScores } from "../../../actions/scoring";
-import { CSSTransition } from "react-transition-group";
+import { fetchPeoplesScoresOnLocation } from "../../../actions/scoring";
+import municipalValues from "../../../utils/municipalValues";
+import { NavLink } from "react-router-dom";
 
 Modal.setAppElement("#root");
 
-const ApartmentsAdminScoring = ({ getScores, scoresObj: { scores } }) => {
+const ApartmentsAdminScoring = ({
+  fetchPeoplesScoresOnLocation,
+  scoresObj: { scores },
+}) => {
   const [showModal, setShowModal] = useState("");
 
   const [modalIsOpen, setIsOpen] = React.useState(false);
 
+  const [selectedLocation, setSelectedLocation] = useState("");
+
+  const [modalAddNewIsOpen, setAddNewIsOpen] = useState(false);
+
+  const onChange = (e) => {
+    setSelectedLocation(e.target.value);
+  };
+
+  const onSubmit = () => {
+    closeModal();
+  };
+
   useEffect(() => {
-    // getScores();
-    // TODO - getLocations
     setIsOpen(true);
-  }, [getScores]);
+  }, []);
+
+  useEffect(() => {
+    if (selectedLocation !== "") fetchPeoplesScoresOnLocation(selectedLocation);
+  }, [selectedLocation]);
 
   const customStyles = {
     content: {
@@ -34,10 +52,6 @@ const ApartmentsAdminScoring = ({ getScores, scoresObj: { scores } }) => {
 
   function openModal() {
     setIsOpen(true);
-  }
-
-  function afterOpenModal() {
-    // references are now sync'd and can be accessed.
   }
 
   function closeModal() {
@@ -70,9 +84,27 @@ const ApartmentsAdminScoring = ({ getScores, scoresObj: { scores } }) => {
                   Παρακαλώ Επιλέξτε Περιοχή:
                 </h5>
               </div>
-              <div className="modal-body">...</div>
+              <div className="modal-body">
+                <select
+                  value={selectedLocation}
+                  className="form-control"
+                  onChange={(e) => onChange(e)}
+                >
+                  <option value="">--Επιλέξτε Ένα Δήμο--</option>
+                  {municipalValues.map((municipal) => (
+                    <option key={uuidv4()} value={municipal}>
+                      {municipal}
+                    </option>
+                  ))}
+                </select>
+              </div>
               <div className="modal-footer">
-                <button type="button" className="btn btn-primary">
+                <button
+                  disabled={selectedLocation === "" ? true : false}
+                  type="button"
+                  className="btn btn-primary"
+                  onClick={onSubmit}
+                >
                   Εισαγωγή
                 </button>
               </div>
@@ -86,8 +118,20 @@ const ApartmentsAdminScoring = ({ getScores, scoresObj: { scores } }) => {
         <div className="row">
           <div className="col-md-12">
             <div className="card">
-              <div className="card-header">
-                <h3>Αναλυτικός πίνακας στελεχών που μοριοδοτούνται:</h3>
+              <div className="card-header d-flex">
+                <h3 className="mr-auto">
+                  Αναλυτικός πίνακας στελεχών που μοριοδοτούνται στην περιοχή{" "}
+                  {selectedLocation}:
+                </h3>
+                <button
+                  to="/apartments-admin/scoring/new"
+                  className="btn btn-primary pull-right"
+                  onClick={() => {
+                    setAddNewIsOpen(true);
+                  }}
+                >
+                  Εισαγωγή Νέου <span className="fa fa-plus-circle"></span>
+                </button>
               </div>
               <div className="card-body table-responsive">
                 <table className="table table-striped table-hover">
@@ -102,22 +146,8 @@ const ApartmentsAdminScoring = ({ getScores, scoresObj: { scores } }) => {
                       <th>Μονάδα</th>
                       <th>Οικογ. Κατάσταση</th>
                       <th>Παιδιά</th>
-                      {/*<th>Μόρια Βαθμόυ</th>*/}
-                      {/*<th>Μόρια Συζύγου</th>*/}
-                      {/*<th>*/}
-                      {/*  1<sup>ου</sup> Παδιού*/}
-                      {/*</th>*/}
-                      {/*<th>*/}
-                      {/*  3<sup>ου</sup> 4<sup>ου</sup> Παδιού Και Άνω*/}
-                      {/*</th>*/}
                       <th>Μέλος Οικογ. Με Ειδικές Ανάγκες</th>
-                      {/*<th>Μήνες Αναμονής Χ1</th>*/}
-                      {/*<th>Μήνες Αναμονής Χ2</th>*/}
                       <th>Σύνολο Θετικών Μορίων</th>
-                      {/*<th>Μήνες Προηγ. Στέγασης Χ2</th>*/}
-                      {/*<th>Μήνες Προηγ. Στέγασης Χ3</th>*/}
-                      {/*<th>Χρ. Υπηρετ. Στο Εξωτ.</th>*/}
-                      {/*<th>Ετήσιο Εισόδημα</th>*/}
                       <th>Σύνολο Αρνητικών Μορίων</th>
                       <th>Γενικό Σύνολο Μορίων</th>
                       <th>Επιθυμία Στέγασης</th>
@@ -180,11 +210,13 @@ const ApartmentsAdminScoring = ({ getScores, scoresObj: { scores } }) => {
 };
 
 ApartmentsAdminScoring.propTypes = {
-  getScores: PropTypes.func.isRequired,
+  fetchPeoplesScoresOnLocation: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   scoresObj: state.scoringReducer,
 });
 
-export default connect(mapStateToProps, { getScores })(ApartmentsAdminScoring);
+export default connect(mapStateToProps, { fetchPeoplesScoresOnLocation })(
+  ApartmentsAdminScoring
+);

@@ -11,6 +11,7 @@ namespace App\Controller;
 
 use App\Repository\ScoringRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\SerializerInterface;
@@ -21,10 +22,12 @@ class ScoringController extends AbstractController
      * @return Response
      * @Route("/api/scores", name="api_get_scoring", methods={"GET"})
      */
-    public function getPeopleScores(SerializerInterface $serializer, ScoringRepository $scoringRepository)
+    public function getPeopleScores(SerializerInterface $serializer, ScoringRepository $scoringRepository, Request $request)
     {
 
-        $scores = $scoringRepository->findAll();
+//        $scores = $scoringRepository->findAll();
+
+        $scores = $scoringRepository->findAllMatching($request->query->get('query'));
 
 
         return new Response($serializer->serialize($scores, 'json', ['groups' => 'scoring:read']));

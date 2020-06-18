@@ -15,3 +15,6 @@ export const LOGOUT_ERROR = "LOGOUT_ERROR";
 // scoring
 export const GET_SCORES = "GET_SCORES";
 export const SCORE_ERROR = "SCORE_ERROR";
+// peopleInArmy that have no score
+export const GET_PEOPLE_NO_SCORE = "GET_PEOPLE_NO_SCORE";
+export const GET_PEOPLE_ERROR = "GET_PEOPLE_ERROR";

@@ -35,7 +35,7 @@ class Unit
     private $peopleInArmy;
 
     /**
-     * @Groups("user:read")
+     * @Groups({"user:read", "scoring:read"})
      * @ORM\Column(type="string", length=30)
      */
     private $location;

@@ -23,3 +23,23 @@ export const getScores = () => async (dispatch) => {
     });
   }
 };
+
+export const fetchPeoplesScoresOnLocation = (location) => async (dispatch) => {
+  try {
+    const res = await axios.get(`/api/scores?query=${location}`);
+
+    dispatch({
+      type: GET_SCORES,
+      payload: res.data,
+    });
+  } catch (err) {
+    console.log(err.response.statusText);
+    dispatch({
+      type: SCORE_ERROR,
+      payload: {
+        msg: err.response.statusText,
+        status: err.response.status,
+      },
+    });
+  }
+};

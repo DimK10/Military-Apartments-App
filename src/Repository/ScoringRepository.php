@@ -19,6 +19,21 @@ class ScoringRepository extends ServiceEntityRepository
         parent::__construct($registry, Scoring::class);
     }
 
+    public function findAllMatching(string $query)
+    {
+//        TODO - Maybe move this query to personInArmy repository?
+        return $this->createQueryBuilder('s')
+            ->leftJoin('s.personInArmy', 'p')
+            ->addSelect('p')
+            ->leftJoin('p.unit', 'u')
+            ->addSelect('u')
+            ->andWhere('u.location LIKE :query')
+            ->setParameter('query', '%'.$query.'%')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
     // /**
     //  * @return Scoring[] Returns an array of Scoring objects
     //  */
