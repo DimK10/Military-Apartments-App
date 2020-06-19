@@ -10,6 +10,7 @@
 namespace App\Controller;
 
 use App\Repository\ScoringRepository;
+use Lexik\Bundle\JWTAuthenticationBundle\Encoder\JWTEncoderInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -22,10 +23,10 @@ class ScoringController extends AbstractController
      * @return Response
      * @Route("/api/scores", name="api_get_scoring", methods={"GET"})
      */
-    public function getPeopleScores(SerializerInterface $serializer, ScoringRepository $scoringRepository, Request $request)
+    public function getPeopleScores(SerializerInterface $serializer, ScoringRepository $scoringRepository, Request $request, JWTEncoderInterface $JWTEncoder)
     {
 
-//        $scores = $scoringRepository->findAll();
+
 
         $scores = $scoringRepository->findAllMatching($request->query->get('query'));
 

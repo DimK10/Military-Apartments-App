@@ -63,7 +63,6 @@ const ApartmentsAdminScoring = ({
       <div className="container">
         <Modal
           isOpen={modalIsOpen}
-          onAfterOpen={afterOpenModal}
           onRequestClose={closeModal}
           style={customStyles}
           contentLabel="Example Modal"
