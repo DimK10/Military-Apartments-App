@@ -17,6 +17,7 @@ class PersonInArmy
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * * @Groups({"personInArmy:read"})
      */
     private $id;
 

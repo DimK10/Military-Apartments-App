@@ -24,7 +24,7 @@ class Unit
     private $id;
 
     /**
-     * @Groups({"user:read", "scoring:read"})
+     * @Groups({"user:read", "scoring:read", "personInArmy:read"})
      * @ORM\Column(type="string", length=255)
      */
     private $name;

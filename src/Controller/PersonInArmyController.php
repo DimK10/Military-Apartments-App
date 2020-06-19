@@ -30,7 +30,8 @@ class PersonInArmyController extends BaseController
         $location = $request->query->get('location');
 
         $peopleInArmy = $personInArmyRepository->findAllNoScoreSameLocation($location);
+//        dd($peopleInArmy);
 
-        return new Response($serializer->serialize($peopleInArmy, 'json', ['groups' => 'personInArmy:read']));
+        return new Response($serializer->serialize($peopleInArmy, 'json', ['groups' => ['personInArmy:read']]));
     }
 }

@@ -15,6 +15,7 @@ import Apartments from "../buildingAdmin/apartments/Apartments";
 import ApartmentsAdminScoring from "../apartmentsAdmin/scoring/ApartmentsAdminScoring";
 import RestrictedRoute from "./RestrictedRoute";
 import Rerouter from "./Rerouter";
+import ScoringNewEntry from "../apartmentsAdmin/scoring/ScoringNewEntry";
 
 const Routes = () => {
   // FIXME - Maybe create a component for / and redirect with history.push? That way a loading modal can be shown
@@ -58,6 +59,12 @@ const Routes = () => {
               exact
               path="/apartments-admin/scoring"
               component={ApartmentsAdminScoring}
+              role="ROLE_APARTMENTS_ADMIN"
+            />
+            <RestrictedRoute
+              exact
+              path="/apartments-admin/scoring/:location/new"
+              component={ScoringNewEntry}
               role="ROLE_APARTMENTS_ADMIN"
             />
 

@@ -6,6 +6,7 @@ import { v4 as uuidv4 } from "uuid";
 import { fetchPeoplesScoresOnLocation } from "../../../actions/scoring";
 import municipalValues from "../../../utils/municipalValues";
 import { NavLink } from "react-router-dom";
+import ScoringNewEntry from "./ScoringNewEntry";
 
 Modal.setAppElement("#root");
 
@@ -13,13 +14,9 @@ const ApartmentsAdminScoring = ({
   fetchPeoplesScoresOnLocation,
   scoresObj: { scores },
 }) => {
-  const [showModal, setShowModal] = useState("");
-
   const [modalIsOpen, setIsOpen] = React.useState(false);
 
   const [selectedLocation, setSelectedLocation] = useState("");
-
-  const [modalAddNewIsOpen, setAddNewIsOpen] = useState(false);
 
   const onChange = (e) => {
     setSelectedLocation(e.target.value);
@@ -122,15 +119,12 @@ const ApartmentsAdminScoring = ({
                   Αναλυτικός πίνακας στελεχών που μοριοδοτούνται στην περιοχή{" "}
                   {selectedLocation}:
                 </h3>
-                <button
-                  to="/apartments-admin/scoring/new"
+                <NavLink
+                  to={`/apartments-admin/scoring/${selectedLocation}/new`}
                   className="btn btn-primary pull-right"
-                  onClick={() => {
-                    setAddNewIsOpen(true);
-                  }}
                 >
                   Εισαγωγή Νέου <span className="fa fa-plus-circle"></span>
-                </button>
+                </NavLink>
               </div>
               <div className="card-body table-responsive">
                 <table className="table table-striped table-hover">
