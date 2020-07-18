@@ -16,6 +16,7 @@ import ApartmentsAdminScoring from "../apartmentsAdmin/scoring/ApartmentsAdminSc
 import RestrictedRoute from "./RestrictedRoute";
 import Rerouter from "./Rerouter";
 import ScoringNewEntry from "../apartmentsAdmin/scoring/ScoringNewEntry";
+import UserAlert from "../layout/UserAlert";
 
 const Routes = () => {
   // FIXME - Maybe create a component for / and redirect with history.push? That way a loading modal can be shown
@@ -52,6 +53,7 @@ const Routes = () => {
       <div className="c-wrapper">
         <Navbar />
         <div className="c-body">
+          <UserAlert />
           <Switch>
             <UserRoute exact path="/user/dashboard" component={UserDashboard} />
 

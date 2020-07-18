@@ -13,7 +13,7 @@ import {
   LOGOUT_ERROR,
 } from "./types";
 
-import { setAlert } from "./alert";
+import { setGeneralAlert } from "./generalAlert";
 
 // Helper function to set up token in Authorization header once
 import setAuthToken from "../utils/setAuthToken";
@@ -63,7 +63,7 @@ export const login = (email, password) => async (dispatch) => {
     const error = err.response.data.message;
 
     if (error) {
-      dispatch(setAlert(error.msg, "danger"));
+      dispatch(setGeneralAlert(error.msg, "danger"));
     }
     dispatch({
       type: LOGIN_FAIL,
@@ -87,7 +87,9 @@ export const registerUser = (formData) => async (dispatch) => {
       payload: res.data,
     });
 
-    dispatch(setAlert("You have been registered successfully!", "success"));
+    dispatch(
+      setGeneralAlert("You have been registered successfully!", "success")
+    );
   } catch (err) {
     dispatch({
       type: REGISTER_FAIL,
@@ -95,7 +97,7 @@ export const registerUser = (formData) => async (dispatch) => {
     const errors = err.response.data.errors;
 
     if (errors) {
-      errors.forEach((error) => dispatch(setAlert(error.msg, "danger")));
+      errors.forEach((error) => dispatch(setGeneralAlert(error.msg, "danger")));
     }
   }
 };
@@ -105,5 +107,7 @@ export const logout = () => async (dispatch) => {
   dispatch({
     type: LOGOUT,
   });
-  dispatch(setAlert("You have been logged out successfully!", "success"));
+  dispatch(
+    setGeneralAlert("You have been logged out successfully!", "success")
+  );
 };

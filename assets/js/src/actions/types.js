@@ -1,6 +1,8 @@
 // alert
-export const SET_ALERT = "SET_ALERT";
-export const REMOVE_ALERT = "REMOVE_ALERT";
+export const SET_GENERAL_ALERT = "SET_GENERAL_ALERT";
+export const SET_USER_ALERT = "SET_USER_ALERT";
+export const REMOVE_GENERAL_ALERT = "REMOVE_GENERAL_ALERT";
+export const REMOVE_USER_ALERT = "REMOVE_USER_ALERT";
 // auth
 export const USER_LOADED = "USER_LOADED";
 export const LOAD_USER_AVATAR = "LOAD_USER_AVATAR";

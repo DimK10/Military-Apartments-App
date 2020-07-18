@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
-const Alert = ({ alerts }) => {
+const GeneralAlert = ({ alerts }) => {
   return (
     alerts !== null &&
     alerts.length > 0 &&
@@ -14,12 +14,12 @@ const Alert = ({ alerts }) => {
   );
 };
 
-Alert.propTypes = {
-  alerts: PropTypes.array.isRequired,
-};
+// GeneralAlert.propTypes = {
+//   alerts: PropTypes.array.isRequired,
+// };
 
 const mapStateToProps = (state) => ({
-  alerts: state.alertReducer,
+  alerts: state.generalAlertReducer,
 });
 
-export default connect(mapStateToProps)(Alert);
+export default connect(mapStateToProps)(GeneralAlert);

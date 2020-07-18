@@ -10,7 +10,8 @@ import Login from "./src/components/auth/Login";
 import AuthenticatedRoute from "./src/components/routing/AuthenticatedRoute";
 import SelectDashboard from "./src/components/auth/SelectDashboard";
 import NotAuthorized from "./src/components/layout/NotAuthorized";
-import Alert from "./src/components/layout/Alert";
+import Alert from "./src/components/layout/UserAlert";
+import GeneralAlert from "./src/components/layout/GeneralAlert";
 
 if (localStorage.getItem("jwt")) {
   const token = JSON.parse(localStorage.getItem("jwt")).token;
@@ -27,7 +28,7 @@ const App = () => {
       <Router>
         <Fragment>
           <div className="container">
-            <Alert />
+            <GeneralAlert />
           </div>
           <Switch>
             <Route exact path="/login" component={Login} />

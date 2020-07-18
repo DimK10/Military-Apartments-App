@@ -1,11 +1,13 @@
 import { combineReducers } from "redux";
-import alertReducer from "./alertReducer";
+import userAlertReducer from "./userAlertReducer";
 import authReducer from "./authReducer";
 import scoringReducer from "./scoringReducer";
 import peopleInArmyReducer from "./peopleInArmyReducer";
+import generalAlertReducer from "./generalAlertReducer";
 
 export default combineReducers({
-  alertReducer,
+  userAlertReducer,
+  generalAlertReducer,
   authReducer,
   scoringReducer,
   peopleInArmyReducer,
