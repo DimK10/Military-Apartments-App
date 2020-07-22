@@ -53,7 +53,9 @@ const Routes = () => {
       <div className="c-wrapper">
         <Navbar />
         <div className="c-body">
-          <UserAlert />
+          <div className="container">
+            <UserAlert />
+          </div>
           <Switch>
             <UserRoute exact path="/user/dashboard" component={UserDashboard} />
 

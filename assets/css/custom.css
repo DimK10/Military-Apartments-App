@@ -19,8 +19,15 @@
     opacity: 0;
     transition: opacity 500ms ease-in;
 }
-
+.container {
+    position: relative;
+    width: 100%;
+}
 /* Make alert msg not push other element down */
 .alert {
     position: absolute;
+    text-align: center;
+    left: 10%;
+    right: 10%;
+    /*width: 100%;*/
 }
