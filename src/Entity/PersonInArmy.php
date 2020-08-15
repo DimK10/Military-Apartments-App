@@ -37,6 +37,7 @@ class PersonInArmy
      * @Groups({"personInArmy:read", "personInArmy:write", "user:read", "scoring:read"})
      * @ORM\Column(type="string", length=10)
      */
+    // TODO - Move to a seperate entity
     private $rank;
 
     /**

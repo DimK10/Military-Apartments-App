@@ -11,6 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity(repositoryClass=MilitaryResidenceRepository::class)
  */
 class MilitaryResidence
+// TODO - Add MilitaryResidenceType as a separate entity (type: ΣΟΑ, ΣΟΜΥ, ΣΟΕΠΟΠ ΓΙΑ ΣΥΝΘΕΤΕΣ ΑΝΑΖΗΤΗΣΕΙΣ)
 {
     /**
      * @ORM\Id()
@@ -48,6 +49,12 @@ class MilitaryResidence
      * @ORM\OneToMany(targetEntity=Apartment::class, mappedBy="militaryResidence")
      */
     private $apartments;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=MilitaryResidenceType::class, inversedBy="militaryResidences")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $type;
 
     public function __construct()
     {
@@ -146,6 +153,18 @@ class MilitaryResidence
                 $apartment->setMilitaryResidence(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getType(): ?MilitaryResidenceType
+    {
+        return $this->type;
+    }
+
+    public function setType(?MilitaryResidenceType $type): self
+    {
+        $this->type = $type;
 
         return $this;
     }
