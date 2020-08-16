@@ -19,6 +19,23 @@ class ApartmentRepository extends ServiceEntityRepository
         parent::__construct($registry, Apartment::class);
     }
 
+      /*
+      * @return Apartment[] Returns an array of Apartment objects
+      */
+
+    public function getAllApartmentsByMilitaryResidenceId($id)
+    {
+        return $this->createQueryBuilder('a')
+            ->leftJoin('a.militaryResidence', 'm')
+            ->addSelect('m')
+            ->andWhere('m.id = :milId')
+            ->setParameter('milId', $id)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+
     // /**
     //  * @return Apartment[] Returns an array of Apartment objects
     //  */

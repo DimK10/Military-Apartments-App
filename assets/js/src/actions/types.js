@@ -20,3 +20,9 @@ export const SCORE_ERROR = "SCORE_ERROR";
 // peopleInArmy that have no score
 export const GET_PEOPLE_NO_SCORE = "GET_PEOPLE_NO_SCORE";
 export const GET_PEOPLE_ERROR = "GET_PEOPLE_ERROR";
+// military Residence
+export const GET_MILITARY_RESIDENCE = "GET_MILITARY_RESIDENCE";
+export const MILITARY_RESIDENCE_ERROR = "MILITARY_RESIDENCE_ERROR";
+// apartment
+export const GET_APARTMENTS = "GET_APARTMENTS";
+export const APARTMENT_ERROR = "APARTMENT_ERROR";

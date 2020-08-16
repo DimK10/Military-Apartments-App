@@ -6,6 +6,7 @@ use App\Repository\MilitaryResidenceRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=MilitaryResidenceRepository::class)
@@ -17,6 +18,7 @@ class MilitaryResidence
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * @Groups({"user:read"})
      */
     private $id;
 
@@ -26,11 +28,13 @@ class MilitaryResidence
 //    private $name;
 
     /**
+     * @Groups({"user:read"})
      * @ORM\Column(type="string", length=100)
      */
     private $location;
 
     /**
+     * @Groups({"user:read"})
      * @ORM\Column(type="string", length=100)
      */
     private $address;
@@ -51,6 +55,7 @@ class MilitaryResidence
     private $apartments;
 
     /**
+     * @Groups({"user:read"})
      * @ORM\ManyToOne(targetEntity=MilitaryResidenceType::class, inversedBy="militaryResidences")
      * @ORM\JoinColumn(nullable=false)
      */

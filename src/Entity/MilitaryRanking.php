@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\MilitaryRankingRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=MilitaryRankingRepository::class)
@@ -18,6 +19,7 @@ class MilitaryRanking
     private $id;
 
     /**
+     * @Groups({"personInArmy:read", "personInArmy:write", "user:read", "scoring:read"})
      * @ORM\Column(type="string", length=15)
      */
     private $rankInGreek;

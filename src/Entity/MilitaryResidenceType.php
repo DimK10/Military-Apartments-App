@@ -6,6 +6,7 @@ use App\Repository\MilitaryResidenceTypeRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=MilitaryResidenceTypeRepository::class)
@@ -20,9 +21,10 @@ class MilitaryResidenceType
     private $id;
 
     /**
+     * @Groups({"user:read"})
      * @ORM\Column(type="string", length=10)
      */
-    private $type;
+    private $title;
 
     /**
      * @ORM\OneToMany(targetEntity=MilitaryResidence::class, mappedBy="type")
@@ -39,16 +41,20 @@ class MilitaryResidenceType
         return $this->id;
     }
 
-    public function getType(): ?string
+    /**
+     * @return mixed
+     */
+    public function getTitle()
     {
-        return $this->type;
+        return $this->title;
     }
 
-    public function setType(string $type): self
+    /**
+     * @param mixed $title
+     */
+    public function setTitle($title): void
     {
-        $this->type = $type;
-
-        return $this;
+        $this->title = $title;
     }
 
     /**

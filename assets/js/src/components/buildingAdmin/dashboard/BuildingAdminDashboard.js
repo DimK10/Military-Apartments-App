@@ -18,7 +18,7 @@ const BuildingAdminDashboard = ({
       <p>
         Χρήστης:{" "}
         {usr &&
-          usr.rank +
+          usr.rank.rankInGreek +
             " " +
             usr.specialty +
             " " +

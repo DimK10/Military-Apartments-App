@@ -77,7 +77,7 @@ const Navbar = ({
                 <div className="dropdown-header bg-light py-2">
                   <strong>
                     {usr
-                      ? usr.rank +
+                      ? usr.rank.rankInGreek +
                         " " +
                         usr.specialty +
                         " " +

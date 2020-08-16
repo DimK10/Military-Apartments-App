@@ -4,6 +4,7 @@ import authReducer from "./authReducer";
 import scoringReducer from "./scoringReducer";
 import peopleInArmyReducer from "./peopleInArmyReducer";
 import generalAlertReducer from "./generalAlertReducer";
+import apartmentReducer from "./apartmentReducer";
 
 export default combineReducers({
   userAlertReducer,
@@ -11,4 +12,5 @@ export default combineReducers({
   authReducer,
   scoringReducer,
   peopleInArmyReducer,
+  apartmentReducer,
 });

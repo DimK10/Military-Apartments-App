@@ -20,7 +20,7 @@ class MilitaryResidenceTypeFixture extends BaseFixture
             );
 
            $residenceType = new MilitaryResidenceType();
-           $residenceType->setType((string)$militaryResidenceType[$i]);
+           $residenceType->setTitle((string)$militaryResidenceType[$i]);
 
            return $residenceType;
         });

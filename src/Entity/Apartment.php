@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\ApartmentRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=ApartmentRepository::class)
@@ -18,35 +19,42 @@ class Apartment
     private $id;
 
     /**
+     * @Groups("apartment:read")
      * @ORM\Column(type="string", length=10)
      */
     private $name;
 
     /**
+     * @Groups("apartment:read")
      * @ORM\Column(type="smallint")
      */
     private $floor;
 
     /**
+     * @Groups("apartment:read")
      * @ORM\Column(type="string", length=3)
      */
     private $masterBedrooms;
 
     /**
+     * @Groups("apartment:read")
      * @ORM\Column(type="string", length=10)
      */
     private $masterBedroomsFloorType;
 
     /**
+     * @Groups("apartment:read")
      * @ORM\Column(type="string", length=10)
      */
     private $livingroomFloorType;
 
     /**
+     * @Groups("apartment:read")
      * @ORM\Column(type="string", length=10)
      */
     private $kitchenFloorType;
 
+    // TODO - continue with groups
     /**
      * @ORM\Column(type="string", length=10)
      */
@@ -228,6 +236,7 @@ class Apartment
     private $notes;
 
     /**
+     * @Groups({"user:read"})
      * @ORM\ManyToOne(targetEntity=MilitaryResidence::class, inversedBy="apartments")
      * @ORM\JoinColumn(nullable=true)
      */

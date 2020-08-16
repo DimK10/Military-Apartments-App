@@ -40,6 +40,7 @@ class Tenant
     private $telephones;
 
     /**
+     * @Groups({"user:read"})
      * @ORM\OneToOne(targetEntity=Apartment::class, mappedBy="tenant", cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=true)
      */

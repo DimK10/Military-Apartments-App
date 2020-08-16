@@ -46,7 +46,7 @@ export const ScoringNewEntry = ({
                               {/*<option value="">--Επιλέξτε Ένα Δήμο--</option>*/}
                               {peopleInArmy.map((person) => (
                                 <option key={uuidv4()} value={person.id}>
-                                  {person.rank} {person.specialty}{" "}
+                                  {person.rank.rankInGreek} {person.specialty}{" "}
                                   {person.firstname} {person.surname}{" "}
                                   {person.unit.name}
                                 </option>

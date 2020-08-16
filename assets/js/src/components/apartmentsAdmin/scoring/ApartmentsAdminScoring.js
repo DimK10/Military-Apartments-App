@@ -152,7 +152,7 @@ const ApartmentsAdminScoring = ({
                         <td key={uuidv4()}>{index + 1}</td>
                         <td
                           key={uuidv4()}
-                        >{`${score.personInArmy.rank} ${score.personInArmy.specialty}`}</td>
+                        >{`${score.personInArmy.rank.rankInGreek} ${score.personInArmy.specialty}`}</td>
                         <td className="hidden-md" key={uuidv4()}>
                           {score.personInArmy.firstname}
                         </td>

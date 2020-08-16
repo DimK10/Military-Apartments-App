@@ -83,6 +83,7 @@ class PersonInArmy
     private $lastHousingDate;
 
     /**
+     * @Groups({"personInArmy:read", "personInArmy:write", "user:read", "scoring:read"})
      * @ORM\ManyToOne(targetEntity=MilitaryRanking::class)
      * @ORM\JoinColumn(nullable=true)
      */

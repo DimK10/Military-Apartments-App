@@ -22,7 +22,7 @@ const ApartmentsAdminDashboard = ({
         <p>
           Χρήστης:{" "}
           {usr &&
-            usr.rank +
+            usr.rank.rankInGreek +
               " " +
               usr.specialty +
               " " +
