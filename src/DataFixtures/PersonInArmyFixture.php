@@ -36,23 +36,6 @@ class PersonInArmyFixture extends BaseFixture implements DependentFixtureInterfa
                 9 => 'Αγγελίδης'
             ];
 
-            $randomRanks = [
-                0 => 'Ατγος',
-                1 => 'Υπτγος',
-                2 => 'Τξχος',
-                3 => 'Σχης',
-                4 => 'Ανχης',
-                5 => 'Τχης',
-                6 => 'Λγος',
-                7 => 'Υπλγος',
-                8 => 'Ανθλγος',
-                9 => 'Ανθστης',
-                10 => 'Αλχιας',
-                11 => 'Επχίας',
-                12 => 'Λχιας',
-                13 => 'Δνεας'
-            ];
-
             $randomSpecialty = [
                 0 => '(ΔΒ)',
                 1 => '(ΜΧ)',
@@ -67,7 +50,7 @@ class PersonInArmyFixture extends BaseFixture implements DependentFixtureInterfa
             $personInArmy = new PersonInArmy();
             $personInArmy->setFirstname($randomFirstName[rand(0, 5)]);
             $personInArmy->setSurname((string)$randomSurname[rand(0, 9)]);
-            $personInArmy->setRank((string)$randomRanks[rand(0, 13)]);
+            $personInArmy->setRank($this->getRandomReference('ranks'));
             $personInArmy->setSpecialty((string)$randomSpecialty[rand(0, 7)]);
 
             $personInArmy->setUnit(null);
@@ -90,6 +73,7 @@ class PersonInArmyFixture extends BaseFixture implements DependentFixtureInterfa
     public function getDependencies()
     {
         return [
+            MilitaryRankingFixture::class,
             TenantFixture::class
         ];
     }

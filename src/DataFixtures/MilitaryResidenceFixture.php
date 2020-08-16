@@ -3,6 +3,7 @@
 namespace App\DataFixtures;
 
 use App\Entity\MilitaryResidence;
+use App\Entity\MilitaryResidenceType;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
@@ -27,11 +28,11 @@ class MilitaryResidenceFixture extends BaseFixture implements DependentFixtureIn
                 'ΛΑΡΙΣΣΑ'
             );
 
-            $militaryResidenceType = array(
-                'ΣΟΑ',
-                'ΣΟΜΥ',
-                'ΣΟΕΠΟΠ'
-            );
+//            $militaryResidenceType = array(
+//                'ΣΟΑ',
+//                'ΣΟΜΥ',
+//                'ΣΟΕΠΟΠ'
+//            );
 
             $floors = $this->faker->numberBetween(1, 4);
             $apartments = $floors * 7;
@@ -40,13 +41,13 @@ class MilitaryResidenceFixture extends BaseFixture implements DependentFixtureIn
 
             if ($i < 11) {
                 $militaryResidence->setLocation((string)$locations[$i]);
-                $militaryResidence->setName((string)$militaryResidenceType[0]);
+                $militaryResidence->setType($this->getReference(sprintf('militaryResidenceTypes_%d', 0)));
             } else if ($i < 22) {
                 $militaryResidence->setLocation((string)$locations[$i - 11]);
-                $militaryResidence->setName((string)$militaryResidenceType[1]);
+                $militaryResidence->setType($this->getReference(sprintf('militaryResidenceTypes_%d', 1)));
             } else {
                 $militaryResidence->setLocation((string)$locations[$i - 22]);
-                $militaryResidence->setName((string)$militaryResidenceType[2]);
+                $militaryResidence->setType($this->getReference(sprintf('militaryResidenceTypes_%d', 2)));
             }
 
             $militaryResidence->setAddress($this->faker->address);
@@ -71,6 +72,7 @@ class MilitaryResidenceFixture extends BaseFixture implements DependentFixtureIn
     public function getDependencies()
     {
         return [
+            MilitaryResidenceTypeFixture::class,
             ApartmentFixture::class
         ];
     }

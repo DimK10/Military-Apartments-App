@@ -33,12 +33,12 @@ class PersonInArmy
      */
     private $surname;
 
-    /**
-     * @Groups({"personInArmy:read", "personInArmy:write", "user:read", "scoring:read"})
-     * @ORM\Column(type="string", length=10)
-     */
-    // TODO - Move to a seperate entity
-    private $rank;
+//    /**
+//     * @Groups({"personInArmy:read", "personInArmy:write", "user:read", "scoring:read"})
+//     * @ORM\Column(type="string", length=10)
+//     */
+//    // TODO - Move to a seperate entity
+//    private $rank;
 
     /**
      * @Groups({"personInArmy:read", "personInArmy:write", "user:read", "scoring:read"})
@@ -82,6 +82,12 @@ class PersonInArmy
      */
     private $lastHousingDate;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=MilitaryRanking::class)
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $rank;
+
     public function __construct()
     {
         $this->user = new ArrayCollection();
@@ -112,18 +118,6 @@ class PersonInArmy
     public function setSurname(string $surname): self
     {
         $this->surname = $surname;
-
-        return $this;
-    }
-
-    public function getRank(): ?string
-    {
-        return $this->rank;
-    }
-
-    public function setRank(string $rank): self
-    {
-        $this->rank = $rank;
 
         return $this;
     }
@@ -231,6 +225,18 @@ class PersonInArmy
     public function setLastHousingDate(?\DateTimeInterface $lastHousingDate): self
     {
         $this->lastHousingDate = $lastHousingDate;
+
+        return $this;
+    }
+
+    public function getRank(): ?MilitaryRanking
+    {
+        return $this->rank;
+    }
+
+    public function setRank(?MilitaryRanking $rank): self
+    {
+        $this->rank = $rank;
 
         return $this;
     }
