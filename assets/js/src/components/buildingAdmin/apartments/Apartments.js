@@ -12,12 +12,12 @@ const Apartments = ({
   // TODO - Add loading animation
 
   useEffect(() => {
-    getAllApartmentsFromAMilitaryResidence(
-      user.personInArmy.tenant.apartment.militaryResidence.id
-    );
+    // getAllApartmentsFromAMilitaryResidence(
+    //   user.personInArmy.tenant.apartment.militaryResidence.id
+    // );
   }, []);
   return (
-    loading && (
+    !loading && (
       <div className="c-main">
         <div className="container">
           <div className="page-header text-center">

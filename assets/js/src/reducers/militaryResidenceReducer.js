@@ -1,12 +1,12 @@
 import {
   GET_MILITARY_RESIDENCE,
-  MILITARY_RESIDENCE_ERROR
+  MILITARY_RESIDENCE_ERROR,
 } from "../actions/types";
 
 const initialState = {
-    militaryResidence: {},
-    loading: true,
-    error: {}
+  militaryResidence: {},
+  loading: true,
+  error: {},
 };
 
 export default (state = initialState, action) => {
@@ -28,4 +28,4 @@ export default (state = initialState, action) => {
     default:
       return state;
   }
-}
+};
