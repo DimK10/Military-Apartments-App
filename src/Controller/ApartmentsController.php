@@ -11,7 +11,7 @@ use Symfony\Component\Serializer\SerializerInterface;
 class ApartmentsController extends AbstractController
 {
     /**
-     * @Route("/api/apartments-by-military-residence/{id}", name="apartments")
+     * @Route("/api/apartments-by-military-residence/{id}", name="apartments", methods={"GET"})
      */
     public function getAllApartmentsByMilitaryResidenceId($id, ApartmentRepository $apartmentRepository, SerializerInterface $serializer)
     {
