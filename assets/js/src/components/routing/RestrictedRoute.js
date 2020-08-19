@@ -14,9 +14,9 @@ const RestrictedRoute = ({
     {...rest}
     render={(props) => {
       {
-        console.log(role);
-        console.log(user.roles);
-        console.log(user.roles.includes(role));
+        // console.log(role);
+        // console.log(user.roles);
+        // console.log(user.roles.includes(role));
       }
       if (!isAuthenticated && !loading && !user.email)
         return <Redirect to="/login" />;

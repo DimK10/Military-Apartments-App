@@ -243,6 +243,7 @@ class Apartment
     private $militaryResidence;
 
     /**
+     * @Groups("apartment:read")
      * @ORM\OneToOne(targetEntity=Tenant::class, inversedBy="apartment", cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=true)
      */

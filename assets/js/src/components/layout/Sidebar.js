@@ -7,7 +7,7 @@ import ApartmentsAdminSidebar from "../apartmentsAdmin/sidebar/ApartmentsAdminSi
 const Sidebar = ({ location }) => {
   const showAppropriateSidebar = () => {
     let url = location.pathname;
-    console.log(url);
+    // console.log(url);
 
     // store url to localStorage
     if (url !== "/login" && url !== "/") localStorage.setItem("lastRoute", url);

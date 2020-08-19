@@ -8,13 +8,14 @@ import { getAllApartmentsFromAMilitaryResidence } from "../../../actions/apartme
 const Apartments = ({
   getAllApartmentsFromAMilitaryResidence,
   auth: { user, loading },
+  apartmentsObj: { apartments, loading: apartmentsLoading },
 }) => {
   // TODO - Add loading animation
 
   useEffect(() => {
-    // getAllApartmentsFromAMilitaryResidence(
-    //   user.personInArmy.tenant.apartment.militaryResidence.id
-    // );
+    getAllApartmentsFromAMilitaryResidence(
+      user.personInArmy.tenant.apartment.militaryResidence.id
+    );
   }, []);
   return (
     !loading && (
@@ -26,7 +27,14 @@ const Apartments = ({
               {user.personInArmy.tenant.apartment.militaryResidence.type.title +
                 ":"}
             </h1>
-            <h3>Τοποθεσια: {}</h3>
+            <h3>
+              Τοποθεσια:{" "}
+              {user.personInArmy.tenant.apartment.militaryResidence.location}
+            </h3>
+            <h3>
+              Διεύθυνση:{" "}
+              {user.personInArmy.tenant.apartment.militaryResidence.address}
+            </h3>
           </div>
           <hr />
           <div className="row">
@@ -50,15 +58,28 @@ const Apartments = ({
                       <th>
                         Α<span>/</span>A
                       </th>
-                      <th>Τύπος Στρ. Οικήματος</th>
-                      <th className="hidden-md">Περιοχή</th>
-                      <th>Διέυθυνση</th>
-                      <th>Ένοικος</th>
                       <th>Όνομα Διαμερίσματος</th>
+                      <th>Ένοικος</th>
                       <th>Όροφος</th>
                     </tr>
                   </thead>
-                  <tbody>Δεδομένα εδώ</tbody>
+                  <tbody>
+                    {apartments.map((apartment, index) => (
+                      <tr key={uuidv4()}>
+                        <td key={uuidv4()}>{index + 1}</td>
+                        <td key={uuidv4()}>{apartment.name}</td>
+                        <td key={uuidv4()}>
+                          {apartment.tenant.personInArmy.rank.rankInGreek +
+                            apartment.tenant.personInArmy.specialty +
+                            " " +
+                            apartment.tenant.personInArmy.firstname +
+                            " " +
+                            apartment.tenant.personInArmy.surname}
+                        </td>
+                        <td key={uuidv4()}>{apartment.floor}</td>
+                      </tr>
+                    ))}
+                  </tbody>
                 </table>
               </div>
             </div>
@@ -71,12 +92,13 @@ const Apartments = ({
 
 Apartments.propTypes = {
   auth: PropTypes.object.isRequired,
+  apartmentsObj: PropTypes.object.isRequired,
   getAllApartmentsFromAMilitaryResidence: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   auth: state.authReducer,
-  apartment: state.apartmentReducer,
+  apartmentsObj: state.apartmentReducer,
 });
 
 export default connect(mapStateToProps, {

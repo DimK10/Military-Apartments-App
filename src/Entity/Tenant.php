@@ -47,7 +47,7 @@ class Tenant
     private $apartment;
 
     /**
-     * @Groups({ "tenant:read", "tenant:write" })
+     * @Groups({ "tenant:read", "tenant:write", "apartment:read" })
      * @ORM\OneToOne(targetEntity=PersonInArmy::class, mappedBy="tenant", cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=true)
      */

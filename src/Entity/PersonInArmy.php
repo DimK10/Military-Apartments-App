@@ -22,13 +22,13 @@ class PersonInArmy
     private $id;
 
     /**
-     * @Groups({"personInArmy:read", "personInArmy:write", "user:read", "scoring:read"})
+     * @Groups({"personInArmy:read", "personInArmy:write", "user:read", "scoring:read", "apartment:read"})
      * @ORM\Column(type="string", length=20)
      */
     private $firstname;
 
     /**
-     * @Groups({"personInArmy:read", "personInArmy:write", "user:read", "scoring:read"})
+     * @Groups({"personInArmy:read", "personInArmy:write", "user:read", "scoring:read", "apartment:read"})
      * @ORM\Column(type="string", length=20)
      */
     private $surname;
@@ -41,7 +41,7 @@ class PersonInArmy
 //    private $rank;
 
     /**
-     * @Groups({"personInArmy:read", "personInArmy:write", "user:read", "scoring:read"})
+     * @Groups({"personInArmy:read", "personInArmy:write", "user:read", "scoring:read", "apartment:read"})
      * @ORM\Column(type="string", length=10)
      */
     private $specialty;
@@ -83,7 +83,7 @@ class PersonInArmy
     private $lastHousingDate;
 
     /**
-     * @Groups({"personInArmy:read", "personInArmy:write", "user:read", "scoring:read"})
+     * @Groups({"personInArmy:read", "personInArmy:write", "user:read", "scoring:read", "apartment:read"})
      * @ORM\ManyToOne(targetEntity=MilitaryRanking::class)
      * @ORM\JoinColumn(nullable=true)
      */
