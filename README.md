@@ -1,5 +1,5 @@
 # Military-Apartments-App
-The purpose of this Web App, is to help in the management of the Military Apartments.More specifically, it will help in creating reports, receipts for the tenants and with managing which people are supposed to enter in an apartment, acconding to specific criteria (points system). It will be a full Building Management System. Currently in development.
+The purpose of this Web App, is to help in the management of the Military Apartments. More specifically, it will help in creating reports, receipts for the tenants and with managing which people are supposed to enter in an apartment, acconding to specific criteria (points system). It will be a full Building Management System. Currently in development.
 
 
 # To run the project:
