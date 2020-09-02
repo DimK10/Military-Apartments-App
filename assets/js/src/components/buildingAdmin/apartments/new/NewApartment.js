@@ -155,61 +155,108 @@ const NewApartment = (props) => {
                     </div>
                     <div className="form-row">
                       <div className="form-group col-md-2">
-                        <label htmlFor="inputKitchenWindows">
+                        <label htmlFor="inputElectricPanels">
                           Πίνακας Ρεύματος
                         </label>
                         <input
                           type="text"
                           className="form-control"
-                          id="inputKitchenWindows"
+                          id="inputElectricPanels"
                         />
                       </div>
-                      {/*  <div className="form-group col-md-6">*/}
-                      {/*    <label htmlFor="inputCity">City</label>*/}
-                      {/*    <input*/}
-                      {/*      type="text"*/}
-                      {/*      className="form-control"*/}
-                      {/*      id="inputCity"*/}
-                      {/*    />*/}
-                      {/*  </div>*/}
-                      {/*  <div className="form-group col-md-4">*/}
-                      {/*    <label htmlFor="inputState">State</label>*/}
-                      {/*    <select id="inputState" className="form-control">*/}
-                      {/*      <option selected>Choose...</option>*/}
-                      {/*      <option>...</option>*/}
-                      {/*    </select>*/}
-                      {/*  </div>*/}
-                      {/*  <div className="form-group col-md-2">*/}
-                      {/*    <label htmlFor="inputZip">Zip</label>*/}
-                      {/*    <input*/}
-                      {/*      type="text"*/}
-                      {/*      className="form-control"*/}
-                      {/*      id="inputZip"*/}
-                      {/*    />*/}
-                      {/*  </div>*/}
-                      {/*</div>*/}
-                      {/*<div className="form-group">*/}
-                      {/*  <div className="form-check">*/}
-                      {/*    <input*/}
-                      {/*      className="form-check-input"*/}
-                      {/*      type="checkbox"*/}
-                      {/*      id="gridCheck"*/}
-                      {/*    />*/}
-                      {/*    <label className="form-check-label" htmlFor="gridCheck">*/}
-                      {/*      Check me out*/}
-                      {/*    </label>*/}
-                      {/*  </div>*/}
+                      <div className="form-group col-md-1">
+                        <label htmlFor="inputElectricSockets">Πρίζες</label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          id="inputElectricSockets"
+                        />
+                      </div>
+                      <div className="form-group col-md-2">
+                        <label htmlFor="inputBathHeaters">
+                          Θερμοσίφωνας Μπάνιου
+                        </label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          id="inputBathHeaters"
+                        />
+                      </div>
+                      <div className="form-group col-md-2">
+                        <label htmlFor="inputKitchenAbsorbers">
+                          Απορροφητήρας
+                        </label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          id="inputKitchenAbsorbers"
+                        />
+                      </div>
+                      <div className="form-group col-md-2">
+                        <label htmlFor="inputTelephoneSockets">
+                          Παροχή Τηλεφώνου
+                        </label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          id="inputTelephoneSockets"
+                        />
+                      </div>
+                      <div className="form-group col-md-1">
+                        <label htmlFor="inputTvSockets">Παροχή TV</label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          id="inputTvSockets"
+                        />
+                      </div>
+                      <div className="form-group col-md-2">
+                        <label htmlFor="inputKitchenHeaters">
+                          Θερμοσίφωνας κουζίνας
+                        </label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          id="inputKitchenHeaters"
+                        />
+                      </div>
                     </div>
-                    <button type="submit" className="btn btn-primary">
-                      Sign in
-                    </button>
+                    <hr />
+                    <div className="form-row">
+                      <div className="form-group col-md-4">
+                        <label htmlFor="inputToilets">Καζανάκι WC</label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          id="inputToilets"
+                        />
+                      </div>
+                      <div className="form-group col-md-4">
+                        <label htmlFor="inputFaucetBatteries">
+                          Μπαταρια Μπάνιου
+                        </label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          id="inputFaucetBatteries"
+                        />
+                      </div>
+                      <div className="form-group col-md-4">
+                        <label htmlFor="inputFaucets">Βρύσες</label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          id="inputFaucets"
+                        />
+                      </div>
+                    </div>
                   </form>
                 </div>
               </div>
             </div>
           </div>
           <div className="d-flex justify-content-center" role="group">
-            <button type="button" className="btn btn-primary">
+            <button type="submit" className="btn btn-primary">
               Αποθήκευση
             </button>
 
