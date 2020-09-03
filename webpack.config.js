@@ -1,4 +1,5 @@
 var Encore = require("@symfony/webpack-encore");
+var path = require("path");
 
 // Manually configure the runtime environment if not already configured yet by the "encore" command.
 // It's useful when you use tools that rely on webpack.config.js file.
@@ -25,6 +26,10 @@ Encore
    */
   // .addEntry("js/vendor", "./assets/js/vendor.js")
   .addStyleEntry("css/custom", "./assets/css/custom.css")
+  .addStyleEntry(
+    "modules/react-step-progress/index",
+    "./node_modules/react-step-progress/dist/index.css"
+  )
   // .addStyleEntry("css/coreui", "@coreui/coreui/dist/css/coreui.css")
   //.addEntry('page1', './assets/js/page1.js')
   //.addEntry('page2', './assets/js/page2.js')
@@ -71,10 +76,18 @@ Encore
   // uncomment if you use API Platform Admin (composer req api-admin)
   .enableReactPreset()
   .addEntry("js/app", "./assets/js/index.js");
+
 //.addEntry('admin', './assets/js/admin.js')
 
 // if (!Encore.isProduction()) {
 //   Encore.disableCssExtraction();
 // }
 
-module.exports = Encore.getWebpackConfig();
+const config = Encore.getWebpackConfig();
+// config.resolve.alias = {
+//   modules: path.resolve(__dirname, "node_modules"),
+// };
+//
+// console.log(path.resolve(__dirname, "node_modules"));
+
+module.exports = config;

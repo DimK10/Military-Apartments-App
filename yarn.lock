@@ -5978,6 +5978,10 @@ react-router@5.2.0, react-router@^5.2.0:
     tiny-invariant "^1.0.2"
     tiny-warning "^1.0.0"
 
+"react-step-progress@https://github.com/saini-g/react-step-progress.git":
+  version "1.0.2"
+  resolved "https://github.com/saini-g/react-step-progress.git#01c27556d326f45a0aab274754a42d91ec9b714b"
+
 react-transition-group@^4.4.1:
   version "4.4.1"
   resolved "https://registry.yarnpkg.com/react-transition-group/-/react-transition-group-4.4.1.tgz#63868f9325a38ea5ee9535d828327f85773345c9"
