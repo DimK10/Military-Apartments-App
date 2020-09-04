@@ -14,15 +14,15 @@ const BuildingAdminSidebar = (props) => {
           <span className="ml-2">Υπολογισμός Μηνιαίων Κοινοχρήστων</span>
         </NavLink>
       </li>
-      <li className="c-sidebar-nav-item">
-        <NavLink
-          to={"/building-admin/receipts"}
-          className="c-sidebar-nav-link text-wrap"
-        >
-          <i className="fas fa-ticket-alt fa-2x" aria-hidden="true"></i>
-          <span className="ml-2">Εκτύπωση Αποδείξεων</span>
-        </NavLink>
-      </li>
+      {/*<li className="c-sidebar-nav-item">*/}
+      {/*  <NavLink*/}
+      {/*    to={"/building-admin/receipts"}*/}
+      {/*    className="c-sidebar-nav-link text-wrap"*/}
+      {/*  >*/}
+      {/*    <i className="fas fa-ticket-alt fa-2x" aria-hidden="true"></i>*/}
+      {/*    <span className="ml-2">Εκτύπωση Αποδείξεων</span>*/}
+      {/*  </NavLink>*/}
+      {/*</li>*/}
       <li className="c-sidebar-nav-item">
         <NavLink
           to="/building-admin/protocols"
@@ -34,15 +34,15 @@ const BuildingAdminSidebar = (props) => {
           </span>
         </NavLink>
       </li>
-      <li className="c-sidebar-nav-item">
-        <NavLink
-          to="/building-admin/tenants"
-          className="c-sidebar-nav-link text-wrap"
-        >
-          <i className="fas fa-address-book fa-2x"></i>
-          <span className="ml-2">Αναλυτική Κατάσταση Στελεχών</span>
-        </NavLink>
-      </li>
+      {/*<li className="c-sidebar-nav-item">*/}
+      {/*  <NavLink*/}
+      {/*    to="/building-admin/tenants"*/}
+      {/*    className="c-sidebar-nav-link text-wrap"*/}
+      {/*  >*/}
+      {/*    <i className="fas fa-address-book fa-2x"></i>*/}
+      {/*    <span className="ml-2">Αναλυτική Κατάσταση Στελεχών</span>*/}
+      {/*  </NavLink>*/}
+      {/*</li>*/}
       <li className="c-sidebar-nav-item">
         <NavLink
           to="/building-admin/apartments"
@@ -50,6 +50,15 @@ const BuildingAdminSidebar = (props) => {
         >
           <i className="fas fa-building fa-2x"></i>
           <span className="ml-2">Διαμερίσματατα</span>
+        </NavLink>
+      </li>
+      <li className="c-sidebar-nav-item">
+        <NavLink
+          to="/building-admin/tenants"
+          className="c-sidebar-nav-link text-wrap"
+        >
+          <i className="fas fa-user-friends fa-2x"></i>
+          <span className="ml-2">Ένοικοι</span>
         </NavLink>
       </li>
     </Fragment>

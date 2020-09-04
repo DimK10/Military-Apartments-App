@@ -9,6 +9,8 @@ import StepTwo from "./steps/StepTwo";
 import StepThree from "./steps/StepThree";
 import StepFour from "./steps/StepFour";
 import StepFive from "./steps/StepFive";
+import StepSix from "./steps/StepSix";
+import StepSeven from "./steps/StepSeven";
 
 const NewApartment = (props) => {
   return (
@@ -27,7 +29,7 @@ const NewApartment = (props) => {
                   <h3 className="mr-auto">Συμπληρώστε τα παρακάτω πεδία:</h3>
                 </div>
                 <div className="card-body">
-                  <form>
+                  <form noValidate>
                     <StepProgressBar
                       startingStep={0}
                       primaryBtnClass={"btn btn-primary"}
@@ -53,21 +55,22 @@ const NewApartment = (props) => {
                           content: <StepFour />,
                         },
                         {
-                          label: "Υδραυλική Εγκατάσταση",
+                          label: "Υδραυλική Εγκατάσταση - Κουζίνα",
                           name: "step_5",
                           content: <StepFive />,
                         },
+                        {
+                          label: "WC (τουαλέτα)",
+                          name: "step_6",
+                          content: <StepSix />,
+                        },
+                        {
+                          label: "WC (τουαλέτα)",
+                          name: "step_7",
+                          content: <StepSeven />,
+                        },
                       ]}
                     />
-                    {/*<StepOne />*/}
-                    {/*<hr />*/}
-                    {/*<StepTwo />*/}
-                    {/*<hr />*/}
-                    {/*<StepThree />*/}
-                    {/*<hr />*/}
-                    {/*<StepFour />*/}
-                    {/*<hr />*/}
-                    {/*<StepFive />*/}
                   </form>
                 </div>
               </div>
