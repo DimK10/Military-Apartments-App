@@ -13,6 +13,10 @@ import StepSix from "./steps/StepSix";
 import StepSeven from "./steps/StepSeven";
 
 const NewApartment = (props) => {
+  const onSubmit = () => {
+    alert("submit");
+  };
+
   return (
     <Fragment>
       <div className="c-main">
@@ -33,6 +37,10 @@ const NewApartment = (props) => {
                     <StepProgressBar
                       startingStep={0}
                       primaryBtnClass={"btn btn-primary"}
+                      primaryBtnName={"Επόμενο"}
+                      previousBtnName={"Πίσω"}
+                      submitBtnName={"Υποβολή"}
+                      onSubmit={onSubmit}
                       steps={[
                         {
                           label: "Βασικά Στοιχεία",

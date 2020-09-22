@@ -30,8 +30,14 @@ class ApartmentRepository extends ServiceEntityRepository
             ->addSelect('m')
             ->andWhere('m.id = :milId')
             ->setParameter('milId', $id)
+            ->leftJoin('a.tenant', 't')
+            ->addSelect('t')
+            ->leftJoin('t.personInArmy', 'p')
+            ->addSelect('p')
+            ->leftJoin('p.rank', 'r')
+            ->addSelect('r')
             ->getQuery()
-            ->getResult()
+            ->getArrayResult()
         ;
     }
 
