@@ -12,6 +12,7 @@ namespace App\Controller;
 use App\Repository\ScoringRepository;
 use Lexik\Bundle\JWTAuthenticationBundle\Encoder\JWTEncoderInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -31,6 +32,7 @@ class ScoringController extends AbstractController
         $scores = $scoringRepository->findAllMatching($request->query->get('query'));
 
 
-        return new Response($serializer->serialize($scores, 'json', ['groups' => 'scoring:read']));
+        return new JsonResponse($scores);
+//        return new Response($serializer->serialize($scores, 'json', ['groups' => 'scoring:read']));
     }
 }

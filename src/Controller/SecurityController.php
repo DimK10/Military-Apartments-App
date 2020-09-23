@@ -24,8 +24,9 @@ class SecurityController extends AbstractController
             ], 400);
         }
 
+        // Making an sql query for the date to be in an array is not worth it. Also, any other type of sespponse to json
+        // leads to circular reference. I ll leave it as is for now.
         return new Response($serializer->serialize($this->getUser(), 'json', ['groups' => ['user:read']]));
-        //        return $this->json($this->getUser(), 200);
     }
 
     /** @Route("/api/logout", name="app_logout") */

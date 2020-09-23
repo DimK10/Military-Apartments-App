@@ -6,6 +6,7 @@ use App\Annotation\GrantAccessTo;
 use App\Repository\PersonInArmyRepository;
 use Lexik\Bundle\JWTAuthenticationBundle\Encoder\JWTEncoderInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -15,7 +16,7 @@ use Symfony\Component\Serializer\SerializerInterface;
 class PersonInArmyController extends AbstractController
 {
 
-    const ROLEALLOWED = 'ROLE_BUILDINGS_ADMIN';
+    const ROLEALLOWED = 'ROLE_APARTMENTS_ADMIN';
     const SUBJECT = 'people_in_army_no_score';
     /**
      * @Route("api/people-in-army/no-score", name="people_in_army_no_score", methods={"GET"})
@@ -35,8 +36,7 @@ class PersonInArmyController extends AbstractController
         $location = $request->query->get('location');
 
         $peopleInArmy = $personInArmyRepository->findAllNoScoreSameLocation($location);
-//        dd($peopleInArmy);
 
-        return new Response($serializer->serialize($peopleInArmy, 'json', ['groups' => ['personInArmy:read']]));
+        return new JsonResponse($peopleInArmy);
     }
 }

@@ -32,8 +32,10 @@ class PersonInArmyRepository extends ServiceEntityRepository
             ->andWhere('p.scoring is NULL')
             ->andWhere('u.location LIKE :query')
             ->setParameter('query', '%'.$query.'%')
+            ->leftJoin('p.rank', 'r')
+            ->addSelect('r')
             ->getQuery()
-            ->getResult()
+            ->getArrayResult()
         ;
     }
 

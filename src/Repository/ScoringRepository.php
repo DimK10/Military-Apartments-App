@@ -27,10 +27,12 @@ class ScoringRepository extends ServiceEntityRepository
             ->addSelect('p')
             ->leftJoin('p.unit', 'u')
             ->addSelect('u')
+            ->leftJoin('p.rank', 'r')
+            ->addSelect('r')
             ->andWhere('u.location LIKE :query')
             ->setParameter('query', '%'.$query.'%')
             ->getQuery()
-            ->getResult()
+            ->getArrayResult()
         ;
     }
 
