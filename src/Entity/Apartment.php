@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\ApartmentRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=ApartmentRepository::class)
@@ -21,217 +22,293 @@ class Apartment
     /**
      * @Groups("apartment:read")
      * @ORM\Column(type="string", length=10)
+     * @Assert\NotBlank()
      */
     private $name;
 
     /**
      * @Groups("apartment:read")
      * @ORM\Column(type="smallint")
+     * @Assert\Positive()
      */
     private $floor;
 
     /**
      * @Groups("apartment:read")
      * @ORM\Column(type="string", length=3)
+     * @Assert\NotBlank()
+     * @Assert\Positive()
      */
     private $masterBedrooms;
 
     /**
      * @Groups("apartment:read")
      * @ORM\Column(type="string", length=10)
+     * @Assert\NotBlank()
      */
     private $masterBedroomsFloorType;
 
     /**
      * @Groups("apartment:read")
      * @ORM\Column(type="string", length=10)
+     * @Assert\NotBlank()
      */
     private $livingroomFloorType;
 
     /**
      * @Groups("apartment:read")
      * @ORM\Column(type="string", length=10)
+     * @Assert\NotBlank()
      */
     private $kitchenFloorType;
 
     // TODO - continue with groups
     /**
      * @ORM\Column(type="string", length=10)
+     * @Assert\NotBlank()
      */
     private $wcFloorType;
 
     /**
      * @ORM\Column(type="string", length=10)
+     * @Assert\NotBlank()
      */
     private $hallFloorType;
 
     /**
      * @ORM\Column(type="smallint")
+     * @Assert\NotNull()
+     * @Assert\Positive()
      */
     private $mainEntranceDoors;
 
     /**
      * @ORM\Column(type="smallint")
+     * @Assert\NotNull()
+     * @Assert\Positive()
      */
     private $interiorDoors;
 
     /**
      * @ORM\Column(type="smallint")
+     * @Assert\NotNull()
+     * @Assert\Positive()
      */
     private $balconyDoors;
 
     /**
      * @ORM\Column(type="smallint")
+     * @Assert\NotNull()
+     * @Assert\Positive()
      */
     private $wcWindows;
 
     /**
      * @ORM\Column(type="smallint")
+     * @Assert\NotNull()
+     * @Assert\Positive()
      */
     private $kitchenWindows;
 
     /**
      * @ORM\Column(type="smallint")
+     * @Assert\NotNull()
+     * @Assert\Positive()
      */
     private $electricPanels;
 
     /**
      * @ORM\Column(type="smallint")
+     * @Assert\NotNull()
+     * @Assert\Positive()
      */
     private $electricSockets;
 
     /**
      * @ORM\Column(type="smallint")
+     * @Assert\NotNull()
+     * @Assert\Positive()
      */
     private $bathHeaters;
 
     /**
      * @ORM\Column(type="smallint")
+     * @Assert\NotNull()
+     * @Assert\Positive()
      */
     private $kitchenAbsorbers;
 
     /**
      * @ORM\Column(type="smallint")
+     * @Assert\NotNull()
+     * @Assert\Positive()
      */
     private $telephoneSockets;
 
     /**
      * @ORM\Column(type="smallint")
+     * @Assert\NotNull()
+     * @Assert\Positive()
      */
     private $tvSockets;
 
     /**
      * @ORM\Column(type="smallint")
+     * @Assert\NotNull()
+     * @Assert\Positive()
      */
     private $kitchenHeaters;
 
     /**
      * @ORM\Column(type="smallint")
+     * @Assert\NotNull()
+     * @Assert\Positive()
      */
     private $toilets;
 
     /**
      * @ORM\Column(type="smallint")
+     * @Assert\NotNull()
+     * @Assert\Positive()
      */
     private $faucetBatteries;
 
     /**
      * @ORM\Column(type="smallint")
+     * @Assert\NotNull()
+     * @Assert\Positive()
      */
     private $faucets;
 
     /**
      * @ORM\Column(type="smallint")
+     * @Assert\NotNull()
+     * @Assert\Positive()
      */
     private $doubleSinks;
 
     /**
      * @ORM\Column(type="smallint")
+     * @Assert\NotNull()
+     * @Assert\Positive()
      */
     private $kitchenCabinets;
 
     /**
      * @ORM\Column(type="smallint")
+     * @Assert\NotNull()
+     * @Assert\Positive()
      */
     private $kitchenDrawers;
 
     /**
      * @ORM\Column(type="smallint")
+     * @Assert\NotNull()
+     * @Assert\Positive()
      */
     private $toileRimsWithSeats;
 
     /**
      * @ORM\Column(type="smallint")
+     * @Assert\NotNull()
+     * @Assert\Positive()
      */
     private $bathtubs;
 
     /**
      * @ORM\Column(type="smallint")
+     * @Assert\NotNull()
+     * @Assert\Positive()
      */
     private $bathSinks;
 
     /**
      * @ORM\Column(type="smallint")
+     * @Assert\NotNull()
+     * @Assert\Positive()
      */
     private $shelvesWithMirror;
 
     /**
      * @ORM\Column(type="smallint")
+     * @Assert\NotNull()
+     * @Assert\Positive()
      */
     private $towelHolders;
 
     /**
      * @ORM\Column(type="smallint")
+     * @Assert\NotNull()
+     * @Assert\Positive()
      */
     private $paperHolders;
 
     /**
      * @ORM\Column(type="smallint")
+     * @Assert\NotNull()
+     * @Assert\Positive()
      */
     private $soapHolders;
 
     /**
      * @ORM\Column(type="smallint")
+     * @Assert\NotNull()
+     * @Assert\Positive()
      */
     private $spongeHolders;
 
     /**
      * @ORM\Column(type="smallint")
+     * @Assert\NotNull()
+     * @Assert\Positive()
      */
     private $radiatorBodies;
 
     /**
      * @ORM\Column(type="smallint")
+     * @Assert\NotNull()
+     * @Assert\Positive()
      */
     private $radiatorKeys;
 
     /**
      * @ORM\Column(type="smallint")
+     * @Assert\NotNull()
+     * @Assert\Positive()
      */
     private $wardrobes;
 
     /**
      * @ORM\Column(type="smallint")
+     * @Assert\NotNull()
+     * @Assert\Positive()
      */
     private $balconyLights;
 
     /**
      * @ORM\Column(type="smallint")
+     * @Assert\NotNull()
+     * @Assert\Positive()
      */
     private $houseKeys;
 
     /**
      * @ORM\Column(type="smallint")
+     * @Assert\NotNull()
+     * @Assert\Positive()
      */
     private $tents;
 
     /**
      * @ORM\Column(type="smallint")
+     * @Assert\NotNull()
+     * @Assert\Positive()
      */
     private $flags;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\NotBlank
      */
     private $notes;
 
@@ -239,6 +316,7 @@ class Apartment
      * @Groups({"user:read"})
      * @ORM\ManyToOne(targetEntity=MilitaryResidence::class, inversedBy="apartments")
      * @ORM\JoinColumn(nullable=true)
+     * @Assert\NotNull
      */
     private $militaryResidence;
 

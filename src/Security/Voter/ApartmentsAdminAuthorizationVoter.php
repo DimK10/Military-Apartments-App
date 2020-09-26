@@ -9,7 +9,7 @@ use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\Voter;
 use Symfony\Component\Security\Core\User\UserInterface;
 
-class AuthorizationVoter extends Voter
+class ApartmentsAdminAuthorizationVoter extends Voter
 {
 
     const ROLE = 'ROLE_APARTMENTS_ADMIN';
@@ -17,11 +17,11 @@ class AuthorizationVoter extends Voter
     protected function supports($attribute, $subject)
     {
         // if the attribute isn't one we support, return false
-        if (!in_array($attribute, [self::ROLE])) {
-            return false;
-        }
-
-        return true;
+//        if (!in_array($attribute, [self::ROLE])) {
+//            return false;
+//        }
+//
+//        return true;
     }
 
     protected function voteOnAttribute($attribute, $subject, TokenInterface $token)
