@@ -57,60 +57,13 @@ class ApartmentsController extends AbstractController
 
         $data = json_decode($request->getContent());
 
-        $newApartment = new Apartment();
-
-
-        $newApartment->setName($data->name);
-        $newApartment->setFloor($data->floor);
-        $newApartment->setMasterBedrooms($data->masterBedrooms);
-        $newApartment->setMasterBedroomsFloorType($data->masterBedroomsFloorType);
-        $newApartment->setLivingroomFloorType($data->livingroomFloorType);
-        $newApartment->setKitchenFloorType($data->kitchenFloorType);
-        $newApartment->setWcFloorType($data->wcFloorType);
-        $newApartment->setHallFloorType($data->hallFloorType);
-        $newApartment->setMainEntranceDoors($data->mainEntranceDoors);
-        $newApartment->setInteriorDoors($data->interiorDoors);
-        $newApartment->setBalconyDoors($data->balconyDoors);
-        $newApartment->setWcWindows($data->wcWindows);
-        $newApartment->setKitchenWindows($data->kitchenWindows);
-        $newApartment->setElectricPanels($data->electricPanels);
-        $newApartment->setElectricSockets($data->electricSockets);
-        $newApartment->setBathHeaters($data->bathHeaters);
-        $newApartment->setKitchenAbsorbers($data->kitchenAbsorbers);
-        $newApartment->setTelephoneSockets($data->telephoneSockets);
-        $newApartment->setTvSockets($data->tvSockets);
-        $newApartment->setKitchenHeaters($data->kitchenHeaters);
-        $newApartment->setToilets($data->toilets);
-        $newApartment->setFaucetBatteries($data->faucetBatteries);
-        $newApartment->setFaucets($data->faucets);
-        $newApartment->setDoubleSinks($data->doubleSinks);
-        $newApartment->setKitchenCabinets($data->kitchenCabinets);
-        $newApartment->setKitchenDrawers($data->kitchenDrawers);
-        $newApartment->setToileRimsWithSeats($data->toileRimsWithSeats);
-        $newApartment->setBathtubs($data->bathTubs);
-        $newApartment->setBathSinks($data->bathSinks);
-        $newApartment->setShelvesWithMirror($data->shelvesWithMirror);
-        $newApartment->setTowelHolders($data->towelHolders);
-        $newApartment->setPaperHolders($data->paperHolders);
-        $newApartment->setSoapHolders($data->soapHolders);
-        $newApartment->setSpongeHolders($data->spongeHolders);
-        $newApartment->setRadiatorBodies($data->radiatorBodies);
-        $newApartment->setRadiatorKeys($data->radiatorKeys);
-        $newApartment->setWardrobes($data->wardrobes);
-        $newApartment->setBalconyLights($data->balconyLights);
-        $newApartment->setHouseKeys($data->houseKeys);
-        $newApartment->setTents($data->tents);
-        $newApartment->setFlags($data->flags);
-        $newApartment->setNotes($data->notes);
-        $newApartment->setMilitaryResidence($data->militaryResidence);
-        $newApartment->setTenant($data->tenant);
-
-
-
+        $newApartment = $validationService->createApartmentObject($data);
 
         $errorsArr = $validationService->validate($newApartment);
 
-        if (count($errorsArr) > 0) {
+        $validationService->create($newApartment);
+
+        if (is_countable($errorsArr) && count($errorsArr) > 0) {
             return new JsonResponse(array("errors" => $errorsArr), 400);
         }
 
