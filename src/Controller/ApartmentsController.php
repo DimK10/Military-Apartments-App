@@ -5,7 +5,7 @@ namespace App\Controller;
 use App\CustomDataClasses\ApartmentClone;
 use App\Entity\Apartment;
 use App\Repository\ApartmentRepository;
-use App\Service\ValidationService;
+use App\Service\ApartmentService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -50,7 +50,7 @@ class ApartmentsController extends AbstractController
      * @Route("/api/new-apartment", name="new_apartment", methods={"POST"})
      */
 
-    public function createNewApartment(Request $request, ValidationService $validationService)
+    public function createNewApartment(Request $request, ApartmentService $validationService)
     {
         $subject = 'new_apartment';
         $this->denyAccessUnlessGranted(self::ROLEALLOWED, $subject);
