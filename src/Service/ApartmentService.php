@@ -106,6 +106,10 @@ class ApartmentService
         }
     }
 
+    public function listAllAppartmentsByMilitaryId($milId) {
+        return $this->apartmentRepository->getAllApartmentsByMilitaryResidenceId($milId);
+    }
+
     public function create(Object $entity)
     {
         try {
@@ -116,53 +120,58 @@ class ApartmentService
         }
     }
 
-    public function update($id, Object $data) {
+    public function update($id, Apartment $updatedApartment) {
         $apartment = $this->apartmentRepository->find($id);
+
+        if ($apartment == null) {
+            return null;
+        }
 
         try {
 
-            $apartment->setName($data->name);
-            $apartment->setFloor($data->floor);
-            $apartment->setMasterBedrooms($data->masterBedrooms);
-            $apartment->setMasterBedroomsFloorType($data->masterBedroomsFloorType);
-            $apartment->setLivingroomFloorType($data->livingroomFloorType);
-            $apartment->setKitchenFloorType($data->kitchenFloorType);
-            $apartment->setWcFloorType($data->wcFloorType);
-            $apartment->setHallFloorType($data->hallFloorType);
-            $apartment->setMainEntranceDoors($data->mainEntranceDoors);
-            $apartment->setInteriorDoors($data->interiorDoors);
-            $apartment->setBalconyDoors($data->balconyDoors);
-            $apartment->setWcWindows($data->wcWindows);
-            $apartment->setKitchenWindows($data->kitchenWindows);
-            $apartment->setElectricPanels($data->electricPanels);
-            $apartment->setElectricSockets($data->electricSockets);
-            $apartment->setBathHeaters($data->bathHeaters);
-            $apartment->setKitchenAbsorbers($data->kitchenAbsorbers);
-            $apartment->setTelephoneSockets($data->telephoneSockets);
-            $apartment->setTvSockets($data->tvSockets);
-            $apartment->setKitchenHeaters($data->kitchenHeaters);
-            $apartment->setToilets($data->toilets);
-            $apartment->setFaucetBatteries($data->faucetBatteries);
-            $apartment->setFaucets($data->faucets);
-            $apartment->setDoubleSinks($data->doubleSinks);
-            $apartment->setKitchenCabinets($data->kitchenCabinets);
-            $apartment->setKitchenDrawers($data->kitchenDrawers);
-            $apartment->setToileRimsWithSeats($data->toileRimsWithSeats);
-            $apartment->setBathtubs($data->bathtubs);
-            $apartment->setBathSinks($data->bathSinks);
-            $apartment->setShelvesWithMirror($data->shelvesWithMirror);
-            $apartment->setTowelHolders($data->towelHolders);
-            $apartment->setPaperHolders($data->paperHolders);
-            $apartment->setSoapHolders($data->soapHolders);
-            $apartment->setSpongeHolders($data->spongeHolders);
-            $apartment->setRadiatorBodies($data->radiatorBodies);
-            $apartment->setRadiatorKeys($data->radiatorKeys);
-            $apartment->setWardrobes($data->wardrobes);
-            $apartment->setBalconyLights($data->balconyLights);
-            $apartment->setHouseKeys($data->houseKeys);
-            $apartment->setTents($data->tents);
-            $apartment->setFlags($data->flags);
-            $apartment->setNotes($data->notes);
+            $apartment->setName($updatedApartment->getName());
+            $apartment->setFloor($updatedApartment->getFloor());
+            $apartment->setMasterBedrooms($updatedApartment->getMasterBedrooms());
+            $apartment->setMasterBedroomsFloorType($updatedApartment->getMasterBedroomsFloorType());
+            $apartment->setLivingroomFloorType($updatedApartment->getLivingroomFloorType());
+            $apartment->setKitchenFloorType($updatedApartment->getKitchenFloorType());
+            $apartment->setWcFloorType($updatedApartment->getWcFloorType());
+            $apartment->setHallFloorType($updatedApartment->getHallFloorType());
+            $apartment->setMainEntranceDoors($updatedApartment->getMainEntranceDoors());
+            $apartment->setInteriorDoors($updatedApartment->getInteriorDoors());
+            $apartment->setBalconyDoors($updatedApartment->getBalconyDoors());
+            $apartment->setWcWindows($updatedApartment->getWcWindows());
+            $apartment->setKitchenWindows($updatedApartment->getKitchenWindows());
+            $apartment->setElectricPanels($updatedApartment->getElectricPanels());
+            $apartment->setElectricSockets($updatedApartment->getElectricSockets());
+            $apartment->setBathHeaters($updatedApartment->getBathHeaters());
+            $apartment->setKitchenAbsorbers($updatedApartment->getKitchenAbsorbers());
+            $apartment->setTelephoneSockets($updatedApartment->getTelephoneSockets());
+            $apartment->setTvSockets($updatedApartment->getTvSockets());
+            $apartment->setKitchenHeaters($updatedApartment->getKitchenHeaters());
+            $apartment->setToilets($updatedApartment->getToilets());
+            $apartment->setFaucetBatteries($updatedApartment->getFaucetBatteries());
+            $apartment->setFaucets($updatedApartment->getFaucets());
+            $apartment->setDoubleSinks($updatedApartment->getDoubleSinks());
+            $apartment->setKitchenCabinets($updatedApartment->getKitchenCabinets());
+            $apartment->setKitchenDrawers($updatedApartment->getKitchenDrawers());
+            $apartment->setToileRimsWithSeats($updatedApartment->getToileRimsWithSeats());
+            $apartment->setBathtubs($updatedApartment->getBathtubs());
+            $apartment->setBathSinks($updatedApartment->getBathSinks());
+            $apartment->setShelvesWithMirror($updatedApartment->getShelvesWithMirror());
+            $apartment->setTowelHolders($updatedApartment->getTowelHolders());
+            $apartment->setPaperHolders($updatedApartment->getPaperHolders());
+            $apartment->setSoapHolders($updatedApartment->getSoapHolders());
+            $apartment->setSpongeHolders($updatedApartment->getSpongeHolders());
+            $apartment->setRadiatorBodies($updatedApartment->getRadiatorBodies());
+            $apartment->setRadiatorKeys($updatedApartment->getRadiatorKeys());
+            $apartment->setWardrobes($updatedApartment->getWardrobes());
+            $apartment->setBalconyLights($updatedApartment->getBalconyLights());
+            $apartment->setHouseKeys($updatedApartment->getHouseKeys());
+            $apartment->setTents($updatedApartment->getTents());
+            $apartment->setFlags($updatedApartment->getFlags());
+            $apartment->setNotes($updatedApartment->getNotes());
+
 
             $this->entityManager->persist($apartment);
             $this->entityManager->flush();
@@ -175,7 +184,12 @@ class ApartmentService
     public function delete($id)
     {
         try {
-            $apartmentToDelete = $this->apartmentRepository->findOneBy($id);
+            $apartmentToDelete = $this->apartmentRepository->find($id);
+
+            if ($apartmentToDelete == null) {
+                return null;
+            }
+
             $this->entityManager->remove($apartmentToDelete);
             $this->entityManager->flush();
 

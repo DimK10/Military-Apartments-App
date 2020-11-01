@@ -18,16 +18,17 @@ class ApartmentsController extends AbstractController
 {
 
     const ROLEALLOWED = 'ROLE_BUILDING_ADMIN';
+    const SUBJECT = 'modify_apartment';
 
 
     /**
      * @Route("/api/apartments-by-military-residence/{id}", name="apartments", methods={"GET"})
      */
-    public function getAllApartmentsByMilitaryResidenceId($id, ApartmentRepository $apartmentRepository, SerializerInterface $serializer)
+    public function getAllApartmentsByMilitaryResidenceId($id, ApartmentService $apartmentService)
     {
 
 
-        $apartments = $apartmentRepository->getAllApartmentsByMilitaryResidenceId($id);
+        $apartments = $apartmentService->listAllAppartmentsByMilitaryId($id);
 
 
         return new JsonResponse($apartments);
@@ -50,23 +51,69 @@ class ApartmentsController extends AbstractController
      * @Route("/api/new-apartment", name="new_apartment", methods={"POST"})
      */
 
-    public function createNewApartment(Request $request, ApartmentService $validationService)
+    public function createNewApartment(Request $request, ApartmentService $apartmentService)
     {
-        $subject = 'new_apartment';
-        $this->denyAccessUnlessGranted(self::ROLEALLOWED, $subject);
+
+        $this->denyAccessUnlessGranted(self::ROLEALLOWED, self::SUBJECT);
 
         $data = json_decode($request->getContent());
 
-        $newApartment = $validationService->createApartmentObject($data);
+        $newApartment = $apartmentService->createApartmentObject($data);
 
-        $errorsArr = $validationService->validate($newApartment);
-
-        $validationService->create($newApartment);
+        $errorsArr = $apartmentService->validate($newApartment);
 
         if (is_countable($errorsArr) && count($errorsArr) > 0) {
             return new JsonResponse(array("errors" => $errorsArr), 400);
         }
 
+        $apartmentService->create($newApartment);
+
+
+
         return new JsonResponse('Το διαμέρισμα έχει δημιουργηθεί με επιτυχία!', 201);
+    }
+
+    /**
+     * @Route ("/api/apartment/update/{id}" , name="update_apartment", methods={"POST"})
+     */
+    public function updateApartment($id, Request $request, ApartmentService $apartmentService)
+    {
+
+        $this->denyAccessUnlessGranted(self::ROLEALLOWED, self::SUBJECT);
+
+        $data = json_decode($request->getContent());
+
+        $updatedApartment = $apartmentService->createApartmentObject($data);
+
+        $errorsArr = $apartmentService->validate($updatedApartment);
+
+        if (is_countable($errorsArr) && count($errorsArr) > 0) {
+            return new JsonResponse(array("errors" => $errorsArr), 400);
+        }
+
+       $result = $apartmentService->update($id, $updatedApartment);
+
+        if ($result == null) {
+            return new JsonResponse('Tο διαμέρισμα δεν υπάρχει και άρα δεν ενημερώθηκε!', 404);
+        }
+
+        return new JsonResponse('Οι αλλαγές στο διαμέρισμα έχουν πραγματοποιηθεί με επιτυχία!', 200);
+    }
+
+    /**
+     * @Route ("/api/apartment/delete/{id}" , name="delete_apartment", methods={"POST"})
+     */
+    public function deleteApartment($id, Request $request, ApartmentService $apartmentService) {
+
+        $this->denyAccessUnlessGranted(self::ROLEALLOWED, self::SUBJECT);
+
+        $result = $apartmentService->delete($id);
+
+        if($result == null) {
+            // The appartment did not exist in the first place
+            return new JsonResponse('Tο διαμέρισμα δεν υπάρχει και άρα δεν διαγράφηκε!', 404);
+        }
+
+        return new JsonResponse('Tο διαμέρισμα διαγράφηκε με επιτυχία!', 200);
     }
 }

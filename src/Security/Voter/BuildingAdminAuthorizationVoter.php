@@ -31,7 +31,7 @@ class BuildingAdminAuthorizationVoter extends Voter
 
         // CHeck if user is allowed based on subject
         switch ($subject) {
-            case 'new_apartment':
+            case 'modify_apartment':
                 // Check users roles -- ROLE_BUILDING_ADMIN is allowed
                 foreach ($user->getRoles() as $userRoles) {
                     if(in_array($attribute, $userRoles)) {
