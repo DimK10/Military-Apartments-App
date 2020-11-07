@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
 import UserDashboard from "../user/dashboard/UserDashboard";
@@ -48,11 +48,22 @@ const Routes = () => {
   //   }
   // };
 
+  /*
+   *
+   *  When Rerouter component shows, the Sidebar component also shows. This is pretty ugly, but then again,
+   *  since i didn't want to use the redux-persist kudos to me! Anyway, when rerouter shows, the authReducer
+   *  has already the data for the user, therefore i can't just use the loading bool in authReducer to conditionallly
+   *  render Sidebar component. So, to overcome this, I created the below function that traverses the rerouterShowing value
+   *  to actually be able to use conditional rendering.
+   */
+
+  const [rerouterShowing, setRerouterShowing] = useState(false);
+
   return (
     <div className="c-app">
-      <Sidebar />
+      <Sidebar rerouterShowing={rerouterShowing} />
       <div className="c-wrapper">
-        <Navbar />
+        <Navbar rerouterShowing={rerouterShowing} />
         <div className="c-body">
           <div className="container">
             <UserAlert />
@@ -123,7 +134,13 @@ const Routes = () => {
               role="ROLE_BUILDING_ADMIN"
             />
 
-            <Route exact path="/" component={Rerouter} />
+            <Route
+              exact
+              path="/"
+              render={() => (
+                <Rerouter setRerouterShowing={setRerouterShowing} />
+              )}
+            />
           </Switch>
         </div>
       </div>
